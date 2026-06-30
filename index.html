@@ -721,6 +721,13 @@ section{ position:relative; }
   left: 0;
   border: none;
 }
+.video-overlay-blocker {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  background: transparent;
+  cursor: pointer;
+}
 @media(max-width: 760px) {
   .video-modal-close {
     top: 20px;
@@ -1904,6 +1911,7 @@ footer{
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
   </div>
   <div class="video-modal-inner">
+    <div class="video-overlay-blocker" id="videoOverlayBlocker"></div>
     <video id="projectVideo" autoplay muted loop playsinline src="" style="display: none;"></video>
     <iframe id="projectIframe" src="" style="display: none;" allow="autoplay; fullscreen" allowfullscreen></iframe>
   </div>
@@ -2464,6 +2472,10 @@ function closeVideoModal() {
 
 if (videoModalClose) {
   videoModalClose.addEventListener('click', closeVideoModal);
+}
+const videoOverlayBlocker = document.getElementById('videoOverlayBlocker');
+if (videoOverlayBlocker) {
+  videoOverlayBlocker.addEventListener('click', closeVideoModal);
 }
 if (videoModal) {
   videoModal.addEventListener('click', (e) => {
