@@ -6,13 +6,13 @@
 
 <p align="left">
   <a href="https://linkedin.com/in/naushart">
-    <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
+    <img src="https://img.shields.io/badge/LINKEDIN-0077B5?style=for-the-badge" alt="LinkedIn" />
   </a>
   <a href="mailto:naushad2103@gmail.com">
-    <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" />
+    <img src="https://img.shields.io/badge/EMAIL-FF5A1F?style=for-the-badge" alt="Email" />
   </a>
   <a href="https://github.com/naushad2103/portfolio">
-    <img src="https://img.shields.io/badge/Portfolio_Page-FF5A1F?style=for-the-badge&logo=github&logoColor=white" alt="Portfolio" />
+    <img src="https://img.shields.io/badge/PORTFOLIO-E65C00?style=for-the-badge" alt="Portfolio" />
   </a>
 </p>
 
