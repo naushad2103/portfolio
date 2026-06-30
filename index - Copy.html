@@ -436,7 +436,7 @@ section{ position:relative; }
   font-family:'Archivo Expanded','Arial Narrow',sans-serif;
   font-weight:900;
   text-transform:uppercase;
-  font-size:clamp(24px,5.4vw,76px);
+  font-size:clamp(34px,5.4vw,76px);
   line-height:0.98;
   letter-spacing:-0.01em;
   max-width:980px;
@@ -577,7 +577,7 @@ section{ position:relative; }
   font-family:'Archivo Expanded','Arial Narrow',sans-serif;
   font-weight:900;
   text-transform:uppercase;
-  font-size:clamp(22px,4.2vw,58px);
+  font-size:clamp(32px,4.2vw,58px);
   line-height:1.02;
   letter-spacing:-0.01em;
   margin-bottom:24px;
@@ -598,13 +598,11 @@ section{ position:relative; }
   font-size:13px;
   letter-spacing:0.02em;
   color:rgba(250,250,247,0.85);
-  position:relative;
-  padding-left:24px;
+  display:flex; gap:14px; align-items:flex-start;
   line-height:1.6;
 }
 .featured-list li::before{
-  content:'→'; color:var(--orange);
-  position:absolute; left:0; top:0;
+  content:'→'; color:var(--orange); flex-shrink:0;
 }
 .featured-visual{
   position:relative;
@@ -680,9 +678,8 @@ section{ position:relative; }
 /* ============ VIDEO MODAL ============ */
 .video-modal {
   position: fixed; inset: 0; z-index: 950;
-  background: rgba(5, 5, 5, 0.72);
+  background: rgba(22, 20, 15, 0.96);
   display: flex; align-items: center; justify-content: center;
-  padding: 20px;
   opacity: 0; pointer-events: none;
   transition: opacity 0.4s var(--ease);
 }
@@ -703,34 +700,24 @@ section{ position:relative; }
 }
 .video-modal-close svg { width: 16px; height: 16px; }
 .video-modal-inner {
-  width: min(1100px, 95vw);
-  max-height: min(95vh, calc(100vh - 40px));
-  height: min(95vh, calc(100vh - 40px));
+  width: min(90vw, 1200px);
+  aspect-ratio: 16/9;
   background: #000;
-  border-radius: 12px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+  position: relative;
+  border: 1px solid rgba(250, 250, 247, 0.1);
   overflow: hidden;
 }
-.video-modal-inner iframe {
-  width: 100%;
-  height: 100%;
-  border: 0;
-  display: block;
+.video-modal-inner video {
+  width: 100%; height: 100%; object-fit: contain;
 }
-
-@media (max-width: 768px) {
-  .video-modal {
-    padding: 8px;
-  }
-  .video-modal-inner {
-    width: 100%;
-    height: calc(100vh - 20px);
-    max-height: calc(100vh - 20px);
-    border-radius: 8px;
-  }
-  .video-modal-close {
-    top: 10px;
-    right: 10px;
-  }
+.video-modal-inner iframe {
+  position: absolute;
+  width: 100%;
+  height: calc(100% + 120px);
+  top: -60px;
+  left: 0;
+  border: none;
 }
 
 /* ============ WEB APPLICATIONS GRID ============ */
@@ -937,7 +924,7 @@ section{ position:relative; }
   font-family:'Archivo Expanded','Arial Narrow',sans-serif;
   font-weight:900;
   text-transform:uppercase;
-  font-size:clamp(26px,7.2vw,108px);
+  font-size:clamp(40px,7.2vw,108px);
   line-height:0.96;
   letter-spacing:-0.02em;
   max-width:1100px;
@@ -1909,7 +1896,8 @@ footer{
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
   </div>
   <div class="video-modal-inner">
-    <iframe id="videoFrame" src="" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    <video id="projectVideo" autoplay muted loop playsinline src="" style="display: none;"></video>
+    <iframe id="projectIframe" src="" style="display: none;" allow="autoplay; fullscreen" allowfullscreen></iframe>
   </div>
 </div>
 
@@ -2377,43 +2365,93 @@ modalOverlay.addEventListener('click', (e) => { if (e.target === modalOverlay) c
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 
 // ==================== VIDEO MODAL LOGIC ====================
-const videos = {
-  'vr-medical': 'https://drive.google.com/file/d/14-v3u9t4DkRhGL01oJHX63_sO42DaA-J/preview',
-  'bus-configurator': 'https://drive.google.com/file/d/1gx5jGpwLdZqE2zZMth1ddY65X223bjMN/preview',
-  'agri-vr': 'https://drive.google.com/file/d/1wZao6UV5fXN6krDc1WElVsKAnl54UMtn/preview',
-  'arch-viz': 'https://drive.google.com/file/d/1TPHVKeP2rrmnZt0KMHLaopF7uyR7IMCS/preview',
-  'interior-rendering': 'https://drive.google.com/file/d/1wZao6UV5fXN6krDc1WElVsKAnl54UMtn/preview',
-  'furniture-configurator': 'https://drive.google.com/file/d/1wZao6UV5fXN6krDc1WElVsKAnl54UMtn/preview',
-  '3d-scan-tour': 'https://drive.google.com/file/d/1dneMxFjekPQnn9-k9SgTfykuvfQEzWvL/preview',
-  'site-planner': 'https://drive.google.com/file/d/1YAeGhIJkK-SS3j57Y63-b2afBSc_4FFK/preview',
-  'floor-planner': 'https://drive.google.com/file/d/1lzwrR8cfHNGQ_P9wWzNDlDbxIZkNXhV5/preview',
-  '360-tour': 'https://drive.google.com/file/d/1bJ_czPwYt3oqn6P9DL7CMUt7sXB6hWqL/preview',
-  '3d-walkthrough': 'https://drive.google.com/file/d/1lzwrR8cfHNGQ_P9wWzNDlDbxIZkNXhV5/preview'
+const VIDEO_MAP = {
+  // Featured projects
+  'vr-medical': 'https://drive.google.com/file/d/14-v3u9t4DkRhGL01oJHX63_sO42DaA-J/view?usp=drive_link',
+  'bus-configurator': 'https://drive.google.com/file/d/1gx5jGpwLdZqE2zZMth1ddY65X223bjMN/view?usp=drive_link',
+  'agri-vr': 'https://drive.google.com/file/d/1wZao6UV5fXN6krDc1WElVsKAnl54UMtn/view?usp=drive_link',
+  'arch-viz': 'https://drive.google.com/file/d/1TPHVKeP2rrmnZt0KMHLaopF7uyR7IMCS/view?usp=drive_link',
+  'interior-rendering': 'https://drive.google.com/file/d/1wZao6UV5fXN6krDc1WElVsKAnl54UMtn/view?usp=drive_link',
+  'furniture-configurator': 'https://drive.google.com/file/d/1wZao6UV5fXN6krDc1WElVsKAnl54UMtn/view?usp=drive_link',
+
+  // Web Applications grid cards
+  '3d-scan-tour': 'https://drive.google.com/file/d/1dneMxFjekPQnn9-k9SgTfykuvfQEzWvL/view?usp=sharing',
+  'site-planner': 'https://drive.google.com/file/d/1YAeGhIJkK-SS3j57Y63-b2afBSc_4FFK/view?usp=sharing',
+  'floor-planner': 'https://drive.google.com/file/d/1lzwrR8cfHNGQ_P9wWzNDlDbxIZkNXhV5/view?usp=sharing',
+  '360-tour': 'https://drive.google.com/file/d/1bJ_czPwYt3oqn6P9DL7CMUt7sXB6hWqL/view?usp=drive_link',
+  '3d-walkthrough': 'https://drive.google.com/file/d/1lzwrR8cfHNGQ_P9wWzNDlDbxIZkNXhV5/view?usp=sharing'
 };
 
 const videoModal = document.getElementById('videoModal');
+const projectVideo = document.getElementById('projectVideo');
 const videoModalClose = document.getElementById('videoModalClose');
 
 function playProjectVideo(projectId) {
-  const iframe = document.getElementById('videoFrame');
-  const src = videos[projectId];
-  if (!videoModal || !iframe || !src) return;
+  const src = VIDEO_MAP[projectId];
+  const projectIframe = document.getElementById('projectIframe');
+  const modalInner = document.querySelector('.video-modal-inner');
+  
+  if (videoModal && src) {
+    // Dynamic aspect-ratio to prevent ugly letterboxes
+    const squareProjects = ['vr-medical', 'agri-vr', 'arch-viz'];
+    if (modalInner) {
+      if (squareProjects.includes(projectId)) {
+        modalInner.style.aspectRatio = '4/3';
+      } else {
+        modalInner.style.aspectRatio = '16/9';
+      }
+    }
 
-  const params = 'autoplay=1&mute=1&controls=1';
-  iframe.src = src + (src.includes('?') ? `&${params}` : `?${params}`);
-  videoModal.classList.add('open');
-  document.body.style.overflow = 'hidden';
+    if (src.includes('drive.google.com')) {
+      // Convert viewer link to preview link for iframe embedding
+      let embedUrl = src.replace('/view?usp=drive_link', '/preview')
+                        .replace('/view?usp=sharing', '/preview')
+                        .replace('/view', '/preview');
+      // Append autoplay, mute, and controls=0 parameter to hide all controls and black backdrop
+      if (embedUrl.includes('?')) {
+        embedUrl += '&autoplay=1&mute=1&controls=0';
+      } else {
+        embedUrl += '?autoplay=1&mute=1&controls=0';
+      }
+      if (projectIframe) {
+        projectIframe.src = embedUrl;
+        projectIframe.style.display = 'block';
+      }
+      if (projectVideo) {
+        projectVideo.style.display = 'none';
+        projectVideo.src = '';
+      }
+    } else {
+      if (projectVideo) {
+        projectVideo.src = src;
+        projectVideo.style.display = 'block';
+        projectVideo.play();
+      }
+      if (projectIframe) {
+        projectIframe.style.display = 'none';
+        projectIframe.src = 'about:blank';
+      }
+    }
+    videoModal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
 }
 
 function closeVideoModal() {
-  const iframe = document.getElementById('videoFrame');
-  if (!videoModal) return;
-
-  if (iframe) {
-    iframe.src = '';
+  const projectIframe = document.getElementById('projectIframe');
+  if (videoModal) {
+    if (projectVideo) {
+      projectVideo.pause();
+      projectVideo.src = '';
+      projectVideo.style.display = 'none';
+    }
+    if (projectIframe) {
+      projectIframe.src = 'about:blank';
+      projectIframe.style.display = 'none';
+    }
+    videoModal.classList.remove('open');
+    document.body.style.overflow = '';
   }
-  videoModal.classList.remove('open');
-  document.body.style.overflow = '';
 }
 
 if (videoModalClose) {
@@ -2449,9 +2487,6 @@ function drawNodeConnectors() {
   if (!container) return;
   const containerRect = container.getBoundingClientRect();
   
-  // Calculate dynamic scale factor based on screen container layout
-  const scale = (containerRect.width / container.offsetWidth) || 1;
-  
   const pathLeft = document.getElementById('path-left');
   const pathRight = document.getElementById('path-right');
   
@@ -2463,10 +2498,10 @@ function drawNodeConnectors() {
     const rOut = socketOut.getBoundingClientRect();
     const rInLeft = socketInLeft.getBoundingClientRect();
     
-    const x1 = (rOut.left + rOut.width / 2 - containerRect.left) / scale;
-    const y1 = (rOut.top + rOut.height / 2 - containerRect.top) / scale;
-    const x2 = (rInLeft.left + rInLeft.width / 2 - containerRect.left) / scale;
-    const y2 = (rInLeft.top + rInLeft.height / 2 - containerRect.top) / scale;
+    const x1 = rOut.left + rOut.width / 2 - containerRect.left;
+    const y1 = rOut.top + rOut.height / 2 - containerRect.top;
+    const x2 = rInLeft.left + rInLeft.width / 2 - containerRect.left;
+    const y2 = rInLeft.top + rInLeft.height / 2 - containerRect.top;
     
     const controlY = y1 + (y2 - y1) * 0.45;
     pathLeft.setAttribute('d', `M ${x1} ${y1} C ${x1} ${controlY}, ${x2} ${controlY}, ${x2} ${y2}`);
@@ -2476,10 +2511,10 @@ function drawNodeConnectors() {
     const rOut = socketOut.getBoundingClientRect();
     const rInRight = socketInRight.getBoundingClientRect();
     
-    const x1 = (rOut.left + rOut.width / 2 - containerRect.left) / scale;
-    const y1 = (rOut.top + rOut.height / 2 - containerRect.top) / scale;
-    const x2 = (rInRight.left + rInRight.width / 2 - containerRect.left) / scale;
-    const y2 = (rInRight.top + rInRight.height / 2 - containerRect.top) / scale;
+    const x1 = rOut.left + rOut.width / 2 - containerRect.left;
+    const y1 = rOut.top + rOut.height / 2 - containerRect.top;
+    const x2 = rInRight.left + rInRight.width / 2 - containerRect.left;
+    const y2 = rInRight.top + rInRight.height / 2 - containerRect.top;
     
     const controlY = y1 + (y2 - y1) * 0.45;
     pathRight.setAttribute('d', `M ${x1} ${y1} C ${x1} ${controlY}, ${x2} ${controlY}, ${x2} ${y2}`);
