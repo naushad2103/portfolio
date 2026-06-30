@@ -680,12 +680,32 @@ section{ position:relative; }
 /* ============ VIDEO MODAL ============ */
 .video-modal {
   position: fixed; inset: 0; z-index: 950;
-  background: rgba(22, 20, 15, 0.96);
+  background: #0a0a0a; /* Fully opaque background to prevent content showing through */
   display: flex; align-items: center; justify-content: center;
   opacity: 0; pointer-events: none;
   transition: opacity 0.4s var(--ease);
 }
 .video-modal.open { opacity: 1; pointer-events: auto; }
+.video-mask-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 52px;
+  background: #000;
+  z-index: 12;
+  pointer-events: none;
+}
+.video-mask-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 52px;
+  background: #000;
+  z-index: 12;
+  pointer-events: none;
+}
 .video-modal-close {
   position: fixed; top: 30px; right: 48px; z-index: 990;
   width: 46px; height: 46px;
@@ -716,8 +736,8 @@ section{ position:relative; }
 .video-modal-inner iframe {
   position: absolute;
   width: 100%;
-  height: 122%;
-  top: -11%;
+  height: 100%;
+  top: 0;
   left: 0;
   border: none;
   pointer-events: none; /* Block all browser-level click/hover events to iframe */
@@ -1912,6 +1932,8 @@ footer{
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
   </div>
   <div class="video-modal-inner">
+    <div class="video-mask-top"></div>
+    <div class="video-mask-bottom"></div>
     <div class="video-overlay-blocker" id="videoOverlayBlocker"></div>
     <video id="projectVideo" autoplay muted loop playsinline src="" style="display: none;"></video>
     <iframe id="projectIframe" src="" style="display: none;" allow="autoplay; fullscreen" allowfullscreen></iframe>
