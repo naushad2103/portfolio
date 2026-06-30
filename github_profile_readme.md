@@ -11,9 +11,6 @@
   <a href="mailto:naushad2103@gmail.com">
     <img src="https://img.shields.io/badge/EMAIL-FF5A1F?style=for-the-badge" alt="Email" />
   </a>
-  <a href="https://github.com/naushad2103/portfolio">
-    <img src="https://img.shields.io/badge/PORTFOLIO-E65C00?style=for-the-badge" alt="Portfolio" />
-  </a>
 </p>
 
 ---
