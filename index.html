@@ -189,9 +189,67 @@ nav.nav-scrolled{
   transition:width 0.05s linear;
 }
 
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 14px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 600;
+}
+.menu-toggle .bar {
+  width: 100%;
+  height: 2px;
+  background-color: var(--ink);
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 450;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s var(--ease);
+}
+.mobile-menu.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.mobile-nav-links {
+  list-style: none;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.mobile-nav-links a {
+  font-family: 'Archivo Expanded', sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 28px;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  text-decoration: none;
+}
+body.menu-open {
+  overflow: hidden;
+}
+
 @media(max-width:760px){
   nav{ padding:18px 20px; }
   .nav-links{ display:none; }
+  .nav-cta{ display:none; }
+  .menu-toggle { display:flex; }
+  .menu-toggle.open .bar:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  .menu-toggle.open .bar:nth-child(2) { transform: translateY(-6px) rotate(-45deg); }
 }
 
 /* ============ HERO ============ */
@@ -723,14 +781,21 @@ section{ position:relative; }
   gap:10px; margin-top:14px;
 }
 .featured-thumbgrid img{
-  width:100%; height:160px; object-fit:cover;
+  width:100%; height:clamp(80px, 15vw, 160px); object-fit:cover;
   filter:grayscale(0.3);
   transition:filter 0.3s ease;
 }
 .featured-thumbgrid img:hover{ filter:grayscale(0); }
 
+.web-grid {
+  grid-template-columns: 1fr 1.2fr;
+  align-items: start;
+  gap: 40px;
+}
+
 @media(max-width:900px){
   .featured-grid{ grid-template-columns:1fr; }
+  .web-grid { grid-template-columns: 1fr; gap: 30px; }
 }
 
 /* ============ BLUEPRINT / TOOLS SECTION ============ */
@@ -1243,8 +1308,21 @@ footer{
     <li><a href="#contact">Contact</a></li>
   </ul>
   <a class="nav-cta" href="#contact">Let's talk</a>
+  <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </button>
   <div class="scroll-progress" id="scrollProgress"></div>
 </nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <ul class="mobile-nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#tools">Tools</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</div>
 
 <section class="hero" id="heroSection">
   <div class="hero-ring-container">
@@ -1383,7 +1461,6 @@ footer{
             <div class="node-row-item"><span class="key">site_planner</span><span class="val">Interactive</span></div>
             <div class="node-row-item"><span class="key">floor_planner</span><span class="val">2D_View</span></div>
             <div class="node-row-item"><span class="key">360_virtual_tour</span><span class="val">krpano / 3d_Vista</span></div>
-            <div class="node-row-item"><span class="key">3d_walkthrough</span><span class="val">WebGL</span></div>
           </div>
           <div class="node-socket top-socket" id="socket-in-right"></div>
         </div>
@@ -1593,7 +1670,7 @@ footer{
 <!-- FEATURED: WEB APPLICATIONS DETAILS -->
 <section class="featured light-theme section-pad" id="web-applications" style="border-top: 1px solid var(--line-strong);">
   <div class="eyebrow">Web / 360°</div>
-  <div class="featured-grid" style="grid-template-columns: 1fr 1.2fr; align-items: start; gap: 40px;">
+  <div class="featured-grid web-grid">
     <div>
       <h2 class="featured-head">Web Applications</h2>
       <p class="featured-desc">A suite of lightweight, highly optimized web tools designed to bring interactive 3D and panoramic walkthroughs directly to clients' browsers without any installation or plugin required.</p>
@@ -2008,6 +2085,27 @@ function setupNav(){
       progress.style.width = Math.min(100, Math.max(0, pct)) + '%';
     }
   }, { passive:true });
+
+  // Mobile Menu implementation
+  const menuToggle = document.getElementById('menuToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
+  
+  if (menuToggle && mobileMenu) {
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+      document.body.classList.toggle('menu-open');
+    });
+    
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        menuToggle.classList.remove('open');
+        mobileMenu.classList.remove('open');
+        document.body.classList.remove('menu-open');
+      });
+    });
+  }
 }
 
 // ==================== HERO ANIMATION ====================
@@ -2411,14 +2509,26 @@ function setupNodeDragging() {
   let panStartX, panStartY;
   let panCurrentX = 0, panCurrentY = 0;
   
-  let nodeStartX, nodeStartY;
+  let nodeStartX = 0, nodeStartY = 0;
+  let nodeStartTranslateX = 0, nodeStartTranslateY = 0;
   let nodeCurrentX = 0, nodeCurrentY = 0;
+
+  // Responsive scale calculations for Node Graph viewport
+  let graphScale = window.innerWidth < 480 ? 0.45 : (window.innerWidth < 760 ? 0.6 : 1);
+  inner.style.transform = `translate(-50%, -50%) scale(${graphScale})`;
+
+  window.addEventListener('resize', () => {
+    graphScale = window.innerWidth < 480 ? 0.45 : (window.innerWidth < 760 ? 0.6 : 1);
+    inner.style.transform = `translate(calc(-50% + ${panCurrentX}px), calc(-50% + ${panCurrentY}px)) scale(${graphScale})`;
+  });
 
   function dragNode(clientX, clientY) {
     if (!isDraggingNode || !activeNode) return;
     
-    let testX = clientX - nodeStartX;
-    let testY = clientY - nodeStartY;
+    let dX = clientX - nodeStartX;
+    let dY = clientY - nodeStartY;
+    let testX = nodeStartTranslateX + dX / graphScale;
+    let testY = nodeStartTranslateY + dY / graphScale;
     
     // Temporarily apply to measure bounding coordinates
     activeNode.style.transform = `translate(${testX}px, ${testY}px)`;
@@ -2431,15 +2541,15 @@ function setupNodeDragging() {
     
     // Limit bounds inside viewport container
     if (cardRect.left < viewportRect.left) {
-      correctedX += (viewportRect.left - cardRect.left);
+      correctedX += (viewportRect.left - cardRect.left) / graphScale;
     } else if (cardRect.right > viewportRect.right) {
-      correctedX -= (cardRect.right - viewportRect.right);
+      correctedX -= (cardRect.right - viewportRect.right) / graphScale;
     }
     
     if (cardRect.top < viewportRect.top) {
-      correctedY += (viewportRect.top - cardRect.top);
+      correctedY += (viewportRect.top - cardRect.top) / graphScale;
     } else if (cardRect.bottom > viewportRect.bottom) {
-      correctedY -= (cardRect.bottom - viewportRect.bottom);
+      correctedY -= (cardRect.bottom - viewportRect.bottom) / graphScale;
     }
     
     nodeCurrentX = correctedX;
@@ -2463,7 +2573,7 @@ function setupNodeDragging() {
     
     inner.setAttribute('data-pan-x', panCurrentX);
     inner.setAttribute('data-pan-y', panCurrentY);
-    inner.style.transform = `translate(calc(-50% + ${panCurrentX}px), calc(-50% + ${panCurrentY}px))`;
+    inner.style.transform = `translate(calc(-50% + ${panCurrentX}px), calc(-50% + ${panCurrentY}px)) scale(${graphScale})`;
     
     drawNodeConnectors();
   }
@@ -2474,10 +2584,10 @@ function setupNodeDragging() {
     if (card) {
       isDraggingNode = true;
       activeNode = card;
-      nodeCurrentX = parseFloat(card.getAttribute('data-x')) || 0;
-      nodeCurrentY = parseFloat(card.getAttribute('data-y')) || 0;
-      nodeStartX = e.clientX - nodeCurrentX;
-      nodeStartY = e.clientY - nodeCurrentY;
+      nodeStartTranslateX = parseFloat(card.getAttribute('data-x')) || 0;
+      nodeStartTranslateY = parseFloat(card.getAttribute('data-y')) || 0;
+      nodeStartX = e.clientX;
+      nodeStartY = e.clientY;
       e.preventDefault();
       e.stopPropagation();
       return;
@@ -2512,10 +2622,10 @@ function setupNodeDragging() {
     if (card) {
       isDraggingNode = true;
       activeNode = card;
-      nodeCurrentX = parseFloat(card.getAttribute('data-x')) || 0;
-      nodeCurrentY = parseFloat(card.getAttribute('data-y')) || 0;
-      nodeStartX = e.touches[0].clientX - nodeCurrentX;
-      nodeStartY = e.touches[0].clientY - nodeCurrentY;
+      nodeStartTranslateX = parseFloat(card.getAttribute('data-x')) || 0;
+      nodeStartTranslateY = parseFloat(card.getAttribute('data-y')) || 0;
+      nodeStartX = e.touches[0].clientX;
+      nodeStartY = e.touches[0].clientY;
       e.stopPropagation();
       return;
     }
@@ -2555,7 +2665,8 @@ function resetNodePositions() {
   // Reset panning attributes
   inner.removeAttribute('data-pan-x');
   inner.removeAttribute('data-pan-y');
-  inner.style.transform = `translate(-50%, -50%)`;
+  const graphScale = window.innerWidth < 480 ? 0.45 : (window.innerWidth < 760 ? 0.6 : 1);
+  inner.style.transform = `translate(-50%, -50%) scale(${graphScale})`;
 
   // Reset card drag translates
   cards.forEach(card => {
