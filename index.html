@@ -720,12 +720,13 @@ section{ position:relative; }
   top: -11%;
   left: 0;
   border: none;
+  pointer-events: none; /* Block all browser-level click/hover events to iframe */
 }
 .video-overlay-blocker {
   position: absolute;
   inset: 0;
   z-index: 10;
-  background: transparent;
+  background: rgba(0, 0, 0, 0.001); /* Invisible but solid to ensure hit testing catches taps */
   cursor: pointer;
 }
 @media(max-width: 760px) {
