@@ -5,7 +5,7 @@
 ---
 
 <p align="left">
-  <a href="https://linkedin.com/in/naushart">
+  <a href="https://linkedin.com/in/nnaushart">
     <img src="https://img.shields.io/badge/LINKEDIN-0077B5?style=for-the-badge" alt="LinkedIn" />
   </a>
   <a href="mailto:naushad2103@gmail.com">
