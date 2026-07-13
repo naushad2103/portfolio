@@ -2429,7 +2429,7 @@ const videos = {
   'furniture-configurator': 'https://drive.google.com/file/d/1T7RaJEUIUbze8Oh77jF3hjtX5qKvC0ws/preview',
   '3d-scan-tour': 'https://drive.google.com/file/d/1dneMxFjekPQnn9-k9SgTfykuvfQEzWvL/preview',
   'site-planner': 'https://drive.google.com/file/d/1YAeGhIJkK-SS3j57Y63-b2afBSc_4FFK/preview',
-  'floor-planner': 'https://drive.google.com/file/d/1lzwrR8cfHNGQ_P9wWzNDlDbxIZkNXhV5/preview',
+  'floor-planner': 'https://drive.google.com/file/d/1Aw4SFH7WYg8_YBelqJaD_iVBe9pZyEeS/preview',
   '360-tour': 'https://drive.google.com/file/d/1bJ_czPwYt3oqn6P9DL7CMUt7sXB6hWqL/preview',
   '3d-walkthrough': 'https://drive.google.com/file/d/1lzwrR8cfHNGQ_P9wWzNDlDbxIZkNXhV5/preview'
 };
@@ -2625,26 +2625,15 @@ function setupNodeDragging() {
       e.stopPropagation();
       return;
     }
-
-    // 2. Fallback to viewport panning
-    isPanning = true;
-    panCurrentX = parseFloat(inner.getAttribute('data-pan-x')) || 0;
-    panCurrentY = parseFloat(inner.getAttribute('data-pan-y')) || 0;
-    panStartX = e.clientX - panCurrentX;
-    panStartY = e.clientY - panCurrentY;
-    e.preventDefault();
   });
 
   window.addEventListener('mousemove', (e) => {
     if (isDraggingNode) {
       dragNode(e.clientX, e.clientY);
-    } else if (isPanning) {
-      panCanvas(e.clientX, e.clientY);
     }
   });
 
   window.addEventListener('mouseup', () => {
-    isPanning = false;
     isDraggingNode = false;
     activeNode = null;
   });
@@ -2662,24 +2651,15 @@ function setupNodeDragging() {
       e.stopPropagation();
       return;
     }
-
-    isPanning = true;
-    panCurrentX = parseFloat(inner.getAttribute('data-pan-x')) || 0;
-    panCurrentY = parseFloat(inner.getAttribute('data-pan-y')) || 0;
-    panStartX = e.touches[0].clientX - panCurrentX;
-    panStartY = e.touches[0].clientY - panCurrentY;
   });
 
   window.addEventListener('touchmove', (e) => {
     if (isDraggingNode) {
       dragNode(e.touches[0].clientX, e.touches[0].clientY);
-    } else if (isPanning) {
-      panCanvas(e.touches[0].clientX, e.touches[0].clientY);
     }
   });
 
   window.addEventListener('touchend', () => {
-    isPanning = false;
     isDraggingNode = false;
     activeNode = null;
   });
