@@ -1304,7 +1304,7 @@ footer{
   line-height: 1.25;
 }
 
-/* Clean Single Wires with Glowing Blue Energy Pulses */
+/* 3-Strand Fanning Ribbon Wires (Matching Reference Image) */
 .node-graph-svg {
   position: absolute;
   top: 0;
@@ -1314,22 +1314,28 @@ footer{
   pointer-events: none;
   z-index: 3;
 }
+.wire-strand-sub {
+  fill: none;
+  stroke: rgba(75, 106, 189, 0.45);
+  stroke-width: 1.2px;
+}
 .wire-path-bg {
   fill: none;
-  stroke: rgba(75, 106, 189, 0.35);
-  stroke-width: 2px;
+  stroke: #16140F;
+  stroke-width: 1.8px;
+  opacity: 0.85;
 }
 .wire-path-pulse {
   fill: none;
   stroke: #4B6ABD;
   stroke-width: 3.5px;
-  stroke-dasharray: 16 100;
+  stroke-dasharray: 14 100;
   stroke-linecap: round;
   filter: drop-shadow(0 0 6px #4B6ABD);
   animation: wirePulseFlow 2.2s linear infinite;
 }
 @keyframes wirePulseFlow {
-  from { stroke-dashoffset: 116px; }
+  from { stroke-dashoffset: 114px; }
   to { stroke-dashoffset: 0px; }
 }
 
