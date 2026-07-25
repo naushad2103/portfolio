@@ -13,8 +13,10 @@
   --bg-warm: rgba(243, 241, 236, 0.82);
   --ink: #16140F;
   --ink-soft: #4A463E;
-  --orange: #FF5A1F;
-  --orange-deep: #D6430F;
+  --blue: #0066FF;
+  --blue-deep: #0052CC;
+  --orange: #0066FF;
+  --orange-deep: #0052CC;
   --dark: #15130F;
   --line: rgba(22,20,15,0.12);
   --line-strong: rgba(22,20,15,0.22);
@@ -22,7 +24,7 @@
   --ease: cubic-bezier(.16,.84,.44,1);
   --ease-soft: cubic-bezier(.22,.61,.36,1);
 }
-.text-orange { color: var(--orange) !important; font-weight: 500; }
+.text-blue, .text-blue { color: var(--blue) !important; font-weight: 500; }
 
 
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -40,7 +42,7 @@ body{
   cursor:default;
 }
 
-::selection{ background:var(--orange); color:#fff; }
+::selection{ background:var(--blue); color:#fff; }
 
 .mono{
   font-family:'JetBrains Mono','SF Mono',Consolas,monospace;
@@ -94,12 +96,12 @@ body{
   font-size:clamp(11px,1.1vw,14px);
   text-transform:uppercase;
   letter-spacing:0.14em;
-  color:var(--orange);
+  color:var(--blue);
   opacity:0;
 }
 .loader-dot{
   width:7px;height:7px;border-radius:50%;
-  background:var(--orange);
+  background:var(--blue);
   position:absolute; top:-16px; left:0;
   animation:dotpulse 0.9s ease-in-out infinite;
 }
@@ -118,7 +120,7 @@ body{
 .loader-bar-fill{
   position:absolute; left:0; top:0; bottom:0;
   width:0%;
-  background:var(--orange);
+  background:var(--blue);
 }
 .loader-pct{
   margin-top:14px;
@@ -169,7 +171,7 @@ nav.nav-scrolled{
 .nav-links a::after{
   content:'';
   position:absolute; left:0; right:100%; bottom:0;
-  height:1.5px; background:var(--orange);
+  height:1.5px; background:var(--blue);
   transition:right 0.3s var(--ease);
 }
 .nav-links a:hover::after{ right:0; }
@@ -189,7 +191,7 @@ nav.nav-scrolled{
 .scroll-progress{
   position:absolute; left:0; bottom:-1px; height:2px;
   width:0%;
-  background:var(--orange);
+  background:var(--blue);
   transition:width 0.05s linear;
 }
 
@@ -322,7 +324,7 @@ body.menu-open {
   text-transform:uppercase;
   color:var(--ink-soft);
 }
-.hero-eyebrow-row span.tag-orange{ color:var(--orange); }
+.hero-eyebrow-row span.tag-blue, .hero-eyebrow-row span.tag-blue{ color:var(--blue); }
 
 .hero-title{
   font-family:'Archivo Expanded','Arial Narrow',sans-serif;
@@ -335,7 +337,7 @@ body.menu-open {
 }
 .hero-title .line{ overflow:hidden; display:block; }
 .hero-title .line-inner{ display:block; transform:translateY(110%); }
-.hero-title .orange-word{ color:var(--orange); }
+.hero-title .blue-word, .hero-title .blue-word{ color:var(--blue); }
 
 .hero-sub{
   margin-top:30px;
@@ -366,7 +368,7 @@ body.menu-open {
 }
 .scroll-line::after{
   content:''; position:absolute; top:-100%; left:0; right:0; height:100%;
-  background:var(--orange);
+  background:var(--blue);
   animation:scrolldrip 1.8s var(--ease-soft) infinite;
 }
 @keyframes scrolldrip{
@@ -424,12 +426,12 @@ section{ position:relative; }
   font-size:11px;
   letter-spacing:0.14em;
   text-transform:uppercase;
-  color:var(--orange);
+  color:var(--blue);
   display:flex; align-items:center; gap:10px;
   margin-bottom:18px;
 }
 .eyebrow::before{
-  content:''; width:24px; height:1px; background:var(--orange);
+  content:''; width:24px; height:1px; background:var(--blue);
 }
 
 .section-head{
@@ -501,7 +503,7 @@ section{ position:relative; }
   display:inline-block;
   will-change:transform;
 }
-.project:hover .project-name{ transform:translateX(18px); color:var(--orange); }
+.project:hover .project-name{ transform:translateX(18px); color:var(--blue); }
 .project-num-bg{
   position:absolute;
   right:0; top:50%;
@@ -534,7 +536,7 @@ section{ position:relative; }
   transition:background 0.3s ease, border-color 0.3s ease, transform 0.4s var(--ease);
 }
 .project:hover .project-arrow{
-  background:var(--orange); border-color:var(--orange);
+  background:var(--blue); border-color:var(--blue);
   transform:rotate(45deg);
 }
 .project-arrow svg{ width:18px; height:18px; stroke:var(--ink); transition:stroke 0.3s ease; }
@@ -565,7 +567,7 @@ section{ position:relative; }
   background:var(--dark);
   color:var(--bg);
 }
-.featured .eyebrow{ color:var(--orange); }
+.featured .eyebrow{ color:var(--blue); }
 .featured-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -603,7 +605,7 @@ section{ position:relative; }
   line-height:1.6;
 }
 .featured-list li::before{
-  content:'→'; color:var(--orange);
+  content:'→'; color:var(--blue);
   position:absolute; left:0; top:0;
 }
 .featured-visual{
@@ -630,7 +632,7 @@ section{ position:relative; }
 }
 .corner{
   position:absolute; width:18px; height:18px;
-  border-color:var(--orange);
+  border-color:var(--blue);
   z-index:2;
 }
 .corner.tl{ top:-1px; left:-1px; border-top:2px solid; border-left:2px solid; }
@@ -661,7 +663,7 @@ section{ position:relative; }
   box-sizing: border-box;
 }
 .play-video-btn:hover {
-  background: var(--orange);
+  background: var(--blue);
   color: #fff;
 }
 .play-video-btn svg {
@@ -804,7 +806,7 @@ section{ position:relative; }
 }
 .web-app-meta {
   font-size: 11px;
-  color: var(--orange);
+  color: var(--blue);
   letter-spacing: 0.05em;
   margin: 0;
 }
@@ -849,7 +851,7 @@ section{ position:relative; }
 .tool-num{
   font-family:'JetBrains Mono','SF Mono',Consolas,monospace;
   font-size:11px;
-  color:var(--orange);
+  color:var(--blue);
   margin-bottom:24px;
   display:block;
 }
@@ -887,7 +889,7 @@ section{ position:relative; }
 }
 .about-photo-tag{
   position:absolute; bottom:-16px; left:-16px;
-  background:var(--orange); color:#fff;
+  background:var(--blue); color:#fff;
   font-family:'JetBrains Mono','SF Mono',Consolas,monospace;
   font-size:11px;
   letter-spacing:0.06em;
@@ -900,7 +902,7 @@ section{ position:relative; }
   font-weight:500;
   color:var(--ink);
 }
-.about-text .hl{ color:var(--orange); }
+.about-text .hl{ color:var(--blue); }
 .about-meta{
   margin-top:46px;
   display:grid;
@@ -927,7 +929,7 @@ section{ position:relative; }
 
 /* ============ CONTACT / CTA ============ */
 .contact-section{
-  background:var(--orange);
+  background:var(--blue);
   color:#fff;
   padding:140px 48px 70px;
   position:relative;
@@ -954,7 +956,7 @@ section{ position:relative; }
   font-size:clamp(14px,2.2vw,18px);
   text-decoration:none;
   color:#fff;
-  background:#FF5A1F; /* Dark orange background */
+  background:#0066FF; /* Blue background */
   padding:12px 24px;
   border-radius:4px;
   font-weight:700;
@@ -964,7 +966,7 @@ section{ position:relative; }
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 .contact-email:hover{
-  background:#e64a0f;
+  background:#0052CC;
   transform:translateY(-2px);
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
@@ -1052,7 +1054,7 @@ footer{
 .modal-eyebrow{
   font-family:'JetBrains Mono','SF Mono',Consolas,monospace;
   font-size:11px; letter-spacing:0.12em; text-transform:uppercase;
-  color:var(--orange); margin-bottom:18px;
+  color:var(--blue); margin-bottom:18px;
 }
 .modal-title{
   font-family:'Archivo Expanded','Arial Narrow',sans-serif;
@@ -1078,7 +1080,7 @@ footer{
 }
 .modal-feat-list .ft{
   font-family:'JetBrains Mono','SF Mono',Consolas,monospace; font-size:12px;
-  letter-spacing:0.04em; text-transform:uppercase; color:var(--orange);
+  letter-spacing:0.04em; text-transform:uppercase; color:var(--blue);
 }
 .modal-feat-list .fd{ font-size:14px; line-height:1.7; color:var(--ink-soft); }
 @media(max-width:700px){
@@ -1149,7 +1151,7 @@ footer{
   border-color: transparent;
 }
 .featured.dark-theme .play-video-btn:hover {
-  background: var(--orange);
+  background: var(--blue);
   color: #fff;
 }
 .featured.light-theme .web-app-frame {
@@ -1190,8 +1192,8 @@ footer{
   box-shadow: 0 4px 12px rgba(22, 20, 15, 0.05);
 }
 .node-reset-btn:hover {
-  background: var(--orange);
-  border-color: var(--orange);
+  background: var(--blue);
+  border-color: var(--blue);
   color: #fff;
   transform: scale(1.05);
 }
@@ -1241,7 +1243,7 @@ footer{
   cursor: grabbing;
 }
 .node-card:hover {
-  border-color: var(--orange);
+  border-color: var(--blue);
 }
 .node-header {
   padding: 10px 14px;
@@ -1255,7 +1257,7 @@ footer{
   font-weight: 700;
   letter-spacing: 0.02em;
 }
-.node-header.green { background: var(--orange); }
+.node-header.green, .node-header.blue { background: var(--blue); }
 .node-header.purple { background: var(--ink); }
 .node-header.orange { background: var(--ink-soft); }
 
@@ -1293,7 +1295,7 @@ footer{
   color: var(--ink-soft);
 }
 .node-row-item .val {
-  color: var(--orange);
+  color: var(--blue);
   font-weight: 600;
 }
 .node-socket {
@@ -1301,7 +1303,7 @@ footer{
   width: 10px;
   height: 10px;
   background: var(--paper);
-  border: 2px solid var(--orange);
+  border: 2px solid var(--blue);
   border-radius: 50%;
   z-index: 10;
 }
@@ -1309,7 +1311,7 @@ footer{
   bottom: -6px;
   left: 50%;
   transform: translateX(-50%);
-  border-color: var(--orange);
+  border-color: var(--blue);
 }
 .node-socket.top-socket {
   top: -6px;
@@ -1414,12 +1416,12 @@ footer{
   <div class="hero-content-wrapper normal-view">
     <div class="hero-eyebrow-row">
       <span>Delhi, India</span>
-      <span class="tag-orange">Available for work</span>
+      <span class="tag-blue">Available for work</span>
       <span>EST. 2017</span>
     </div>
     <h1 class="hero-title">
       <span class="line"><span class="line-inner">NAVSAD</span></span>
-      <span class="line"><span class="line-inner"><span class="orange-word">ALAM</span></span></span>
+      <span class="line"><span class="line-inner"><span class="blue-word">ALAM</span></span></span>
     </h1>
     <div class="hero-sub">
       <p class="hero-role">Senior <b>Unreal Engine</b> Artist building interactive VR applications, real-time configurators, and the <b>custom editor tools</b> that make them possible.</p>
@@ -1437,12 +1439,12 @@ footer{
   <div class="hero-content-wrapper magnified-view">
     <div class="hero-eyebrow-row">
       <span>Delhi, India</span>
-      <span class="tag-orange">Available for work</span>
+      <span class="tag-blue">Available for work</span>
       <span>EST. 2017</span>
     </div>
     <h1 class="hero-title">
       <span class="line"><span class="line-inner">NAVSAD</span></span>
-      <span class="line"><span class="line-inner"><span class="orange-word">ALAM</span></span></span>
+      <span class="line"><span class="line-inner"><span class="blue-word">ALAM</span></span></span>
     </h1>
     <div class="hero-sub">
       <p class="hero-role">Senior <b>Unreal Engine</b> Artist building interactive VR applications, real-time configurators, and the <b>custom editor tools</b> that make them possible.</p>
@@ -1533,7 +1535,7 @@ footer{
         
         <!-- Right Card: Web Applications -->
         <div class="node-card">
-          <div class="node-header orange">
+          <div class="node-header blue">
             <span>WebApplications</span>
             <div class="node-header-menu"><span></span><span></span><span></span></div>
           </div>
@@ -1556,7 +1558,7 @@ footer{
   <div class="featured-grid">
     <div>
       <h2 class="featured-head">VR Medical Education App</h2>
-      <p class="featured-desc">A multiplayer demo application developed in <span class="text-orange">Unreal Engine</span> for the <span class="text-orange">Oculus Quest</span>, designed specifically for medical professionals — complete with a built-in voice chat system and fully <span class="text-orange">Blueprint-driven</span> interactivity.</p>
+      <p class="featured-desc">A multiplayer demo application developed in <span class="text-blue">Unreal Engine</span> for the <span class="text-blue">Oculus Quest</span>, designed specifically for medical professionals — complete with a built-in voice chat system and fully <span class="text-blue">Blueprint-driven</span> interactivity.</p>
       <ul class="featured-list">
         <li>Topic Selection Interface: A main screen displays various medical topics as clickable thumbnails, each loading a name, instructional video, and anatomical 3D organ model.</li>
         <li>Interactive Learning Environment: Users can pick up, inspect, and rotate anatomical organ models alongside a synced video player for an immersive view.</li>
@@ -1588,7 +1590,7 @@ footer{
   <div class="featured-grid">
     <div>
       <h2 class="featured-head">Introductory Bus Configuration Solution</h2>
-      <p class="featured-desc">A PC-based bus configuration and driving simulator developed in <span class="text-orange">Unreal Engine</span>, featuring advanced <span class="text-orange">ray tracing (RTX)</span> for high-fidelity visuals across a range of hardware configurations.</p>
+      <p class="featured-desc">A PC-based bus configuration and driving simulator developed in <span class="text-blue">Unreal Engine</span>, featuring advanced <span class="text-blue">ray tracing (RTX)</span> for high-fidelity visuals across a range of hardware configurations.</p>
       <ul class="featured-list">
         <li>Real-Time Bus Configuration: Users can customize various aspects of the bus, adjusting features and settings live to suit their preferences.</li>
         <li>Ray Tracing Graphics: Graphics and lighting settings scale dynamically based on system capabilities, ensuring optimal performance.</li>
@@ -1620,7 +1622,7 @@ footer{
   <div class="featured-grid">
     <div>
       <h2 class="featured-head">Agricultural Educational Game</h2>
-      <p class="featured-desc">An educational <span class="text-orange">VR game</span> designed specifically for Turkish agricultural students, providing an immersive and interactive farming simulation on PC-based <span class="text-orange">virtual reality</span> platforms.</p>
+      <p class="featured-desc">An educational <span class="text-blue">VR game</span> designed specifically for Turkish agricultural students, providing an immersive and interactive farming simulation on PC-based <span class="text-blue">virtual reality</span> platforms.</p>
       <ul class="featured-list">
         <li>Three Progressive Farming Levels: The simulation includes three distinct stages of farming, each designed to teach specific agricultural practices.</li>
         <li>Task-Based Learning with Point System: Students follow step-by-step instructions. Correct actions award points, while mistakes deduct points.</li>
@@ -1652,13 +1654,13 @@ footer{
   <div class="featured-grid">
     <div>
       <h2 class="featured-head">Architectural Interior Visualization with Multiplayer Support</h2>
-      <p class="featured-desc">A real-time architectural interior visualization experience with <span class="text-orange">multiplayer</span> functionality, available for both <span class="text-orange">PC and VR</span> platforms.</p>
+      <p class="featured-desc">A real-time architectural interior visualization experience with <span class="text-blue">multiplayer</span> functionality, available for both <span class="text-blue">PC and VR</span> platforms.</p>
       <ul class="featured-list">
         <li>Multiplayer Environment: Supports multiple users in the same session, enabling collaborative walkthroughs and design discussions in real time.</li>
         <li>Interactive Material Customization: Users can interactively change materials on cabinets, flooring, backsplash, and countertops live.</li>
         <li>Top-Down Floor Plan View: Players can switch to a top-down view to see the layout from a floor plan perspective, enhancing spatial understanding.</li>
         <li>Presenter Controls: The host acts as the presenter and can bring all other players to their location with a single click.</li>
-        <li>Blueprints & Data Assets Workflow: Interactivity is implemented using Unreal Engine <span class="text-orange">Blueprints</span> and <span class="text-orange">Data Assets</span> for easy content modification.</li>
+        <li>Blueprints & Data Assets Workflow: Interactivity is implemented using Unreal Engine <span class="text-blue">Blueprints</span> and <span class="text-blue">Data Assets</span> for easy content modification.</li>
       </ul>
       <button class="play-video-btn mono" onclick="playProjectVideo('arch-viz')">
         <div class="corner tl"></div><div class="corner br"></div>
@@ -1686,12 +1688,12 @@ footer{
   <div class="featured-grid">
     <div>
       <h2 class="featured-head">Interior Rendering & Lighting</h2>
-      <p class="featured-desc">A high-fidelity interior visualization pipeline built in <span class="text-orange">Unreal Engine 5</span>. Architectural models are imported via <span class="text-orange">Datasmith</span>, then built out with furniture placement, material assignment, lighting rigs, and final renders.</p>
+      <p class="featured-desc">A high-fidelity interior visualization pipeline built in <span class="text-blue">Unreal Engine 5</span>. Architectural models are imported via <span class="text-blue">Datasmith</span>, then built out with furniture placement, material assignment, lighting rigs, and final renders.</p>
       <ul class="featured-list">
         <li>Lighting Setup: HDRI environments, Rect Lights on windows, Spot Lights on fixtures, using a custom UE5 batch-light plugin I built to automate placement.</li>
         <li>Material Workflow: Master materials with accurate roughness, metallic, and displacement maps. Swaps are handled by my custom Swap Material Table plugin.</li>
         <li>Furniture & Props: Detailed scene dressing placed and configured within the imported model matching client briefs and real-world scale.</li>
-        <li>Path Tracing & Lumen: Final renders use the UE5 <span class="text-orange">path tracer</span> for physically accurate <span class="text-orange">GI and reflections</span>; <span class="text-orange">Lumen</span> is used for fast preview iterations.</li>
+        <li>Path Tracing & Lumen: Final renders use the UE5 <span class="text-blue">path tracer</span> for physically accurate <span class="text-blue">GI and reflections</span>; <span class="text-blue">Lumen</span> is used for fast preview iterations.</li>
       </ul>
       <button class="play-video-btn mono" disabled style="opacity: 0.4; cursor: not-allowed; pointer-events: none;">
         <div class="corner tl"></div><div class="corner br"></div>
@@ -1721,7 +1723,7 @@ footer{
   <div class="featured-grid">
     <div>
       <h2 class="featured-head">Furniture Configurator — built entirely on Blueprints &amp; Data Assets</h2>
-      <p class="featured-desc">A real-time configurator where every product, material slot, and option is data-driven. Adding a new piece of furniture means filling in a <span class="text-orange">Data Asset</span> — never touching a <span class="text-orange">Blueprint</span> graph.</p>
+      <p class="featured-desc">A real-time configurator where every product, material slot, and option is data-driven. Adding a new piece of furniture means filling in a <span class="text-blue">Data Asset</span> — never touching a <span class="text-blue">Blueprint</span> graph.</p>
       <ul class="featured-list">
         <li>Custom DA_Category Data Asset defines product name, thumbnail, actor reference, and material slot arrays</li>
         <li>Click any part of the model — countertop, body — to open a colour palette scoped to that zone only</li>
@@ -1756,7 +1758,7 @@ footer{
       <h2 class="featured-head">Web Applications</h2>
       <p class="featured-desc">A suite of lightweight, highly optimized web tools designed to bring interactive 3D and panoramic walkthroughs directly to clients' browsers without any installation or plugin required.</p>
       <p class="featured-desc" style="margin-top: 20px;">By leveraging advanced framework integrations and AI-assisted workflows, I compile complex Unreal Engine concepts, spatial planning metadata, and massive 3D scanning datasets into super-fast, responsive web interfaces.</p>
-      <p class="featured-desc" style="margin-top: 20px;">Every application is equipped with a dedicated <span class="text-orange">administrative control panel</span>, allowing clients to dynamically update branding elements—such as colors and logos—as well as edit data in real-time. The backend infrastructure is built on a <span class="text-orange">Firebase database</span> to deliver secure, instantaneous data synchronization.</p>
+      <p class="featured-desc" style="margin-top: 20px;">Every application is equipped with a dedicated <span class="text-blue">administrative control panel</span>, allowing clients to dynamically update branding elements—such as colors and logos—as well as edit data in real-time. The backend infrastructure is built on a <span class="text-blue">Firebase database</span> to deliver secure, instantaneous data synchronization.</p>
     </div>
     <div>
       <h3 class="mono" style="font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink); margin-bottom: 16px;">Core Applications</h3>
@@ -1771,7 +1773,7 @@ footer{
           <tbody>
             <tr style="border-bottom: 1px solid var(--line);">
               <td style="padding: 12px 12px 12px 0; font-weight: 600; color: var(--ink); line-height: 1.4;">Interactive 3d Scan Tour</td>
-              <td style="padding: 12px 0; color: var(--ink-soft); line-height: 1.45;">High-fidelity 3D <span class="text-orange">Gaussian Splat</span> viewer running in browser with real-time viewport optimization.</td>
+              <td style="padding: 12px 0; color: var(--ink-soft); line-height: 1.45;">High-fidelity 3D <span class="text-blue">Gaussian Splat</span> viewer running in browser with real-time viewport optimization.</td>
             </tr>
             <tr style="border-bottom: 1px solid var(--line);">
               <td style="padding: 12px 12px 12px 0; font-weight: 600; color: var(--ink); line-height: 1.4;">Interactive Siteplanner</td>
@@ -1783,7 +1785,7 @@ footer{
             </tr>
             <tr style="border-bottom: 1px solid var(--line);">
               <td style="padding: 12px 12px 12px 0; font-weight: 600; color: var(--ink); line-height: 1.4;">360 Virtual Tour</td>
-              <td style="padding: 12px 0; color: var(--ink-soft); line-height: 1.45;">High-performance <span class="text-orange">KRPANO</span> and <span class="text-orange">3DVista</span> virtual panoramic tours with fully customized UI.</td>
+              <td style="padding: 12px 0; color: var(--ink-soft); line-height: 1.45;">High-performance <span class="text-blue">KRPANO</span> and <span class="text-blue">3DVista</span> virtual panoramic tours with fully customized UI.</td>
             </tr>
 
           </tbody>
@@ -2002,7 +2004,7 @@ const PROJECTS = [
     name: 'VR Medical Education App',
     tags: 'Oculus Quest — Multiplayer — Voice Chat',
     img: null, // uses gradient frame, no asset available
-    accent: '#FF5A1F',
+    accent: '#0066FF',
     eyebrow: 'Healthcare / VR',
     description: 'A multiplayer demo application developed for the Oculus Quest, designed specifically for medical professionals — complete with built-in voice chat and full Blueprint-driven interactivity.',
     features: [
@@ -2017,7 +2019,7 @@ const PROJECTS = [
     name: 'Bus Configurator',
     tags: 'PC — Ray Tracing (RTX) — Drive Simulation',
     img: 'bus',
-    accent: '#FF5A1F',
+    accent: '#0066FF',
     eyebrow: 'Automotive / Real-Time Viz',
     description: 'A PC-based bus configuration and driving simulator built in Unreal Engine, featuring advanced ray tracing for high-fidelity visuals across a range of hardware.',
     features: [
@@ -2032,7 +2034,7 @@ const PROJECTS = [
     name: 'Agricultural VR Simulation',
     tags: 'PC & VR — Gamified Learning',
     img: 'farming',
-    accent: '#FF5A1F',
+    accent: '#0066FF',
     eyebrow: 'Education / VR',
     description: 'An educational VR farming simulation built for agricultural students, blending hands-on tasks with a points-based learning system across three progressive stages.',
     features: [
@@ -2047,7 +2049,7 @@ const PROJECTS = [
     name: 'Architectural Interior Viz',
     tags: 'PC & VR — Multiplayer — Material Swap',
     img: 'interior_living',
-    accent: '#FF5A1F',
+    accent: '#0066FF',
     eyebrow: 'Architecture / Multiplayer',
     description: 'A real-time interior visualization tool with full multiplayer support, letting clients and teams walk a space together and explore finishes live.',
     features: [
@@ -2062,7 +2064,7 @@ const PROJECTS = [
     name: 'Interior Rendering & Lighting',
     tags: 'UE5 — Path Tracing / Lumen — Datasmith',
     img: null,
-    accent: '#FF5A1F',
+    accent: '#0066FF',
     eyebrow: 'Visualization Pipeline',
     description: 'A high-fidelity rendering pipeline built in Unreal Engine 5. Architectural models come in via Datasmith; everything after — lighting, materials, cameras, final renders — is built out from there.',
     features: [
@@ -2077,7 +2079,7 @@ const PROJECTS = [
     name: 'Web Applications',
     tags: 'KRPANO — 3D Vista — AI-Assisted JS',
     img: null,
-    accent: '#FF5A1F',
+    accent: '#0066FF',
     eyebrow: 'Web / 360°',
     description: 'A set of lightweight, AI-assisted web tools that bring real-time and panoramic content to clients without any plugin or download required.',
     features: [
@@ -2800,7 +2802,7 @@ function initFlowingDots() {
         };
         
         if (splitAmount > 0.5) {
-            drawChannel(`rgba(255, 90, 31, ${alpha * 0.7})`, -splitAmount, 0); // Orange
+            drawChannel(`rgba(0, 102, 255, ${alpha * 0.7})`, -splitAmount, 0); // Orange
             drawChannel(`rgba(74, 70, 62, ${alpha * 0.7})`, splitAmount, splitAmount); // Soft grey-brown
         }
         drawChannel(`rgba(22, 20, 15, ${alpha})`, 0, 0); // Ink charcoal
@@ -2880,7 +2882,7 @@ function initHeroRing() {
       );
       glassGrad.addColorStop(0, 'rgba(255, 255, 255, 0.18)'); // glare center
       glassGrad.addColorStop(0.5, 'rgba(255, 255, 255, 0.03)'); // base transparency
-      glassGrad.addColorStop(1, 'rgba(255, 90, 31, 0.08)'); // orange rim refraction
+      glassGrad.addColorStop(1, 'rgba(0, 102, 255, 0.08)'); // orange rim refraction
       ctx.fillStyle = glassGrad;
       ctx.fill();
     }
@@ -2888,7 +2890,7 @@ function initHeroRing() {
     ctx.strokeStyle = color;
     ctx.lineWidth = lineWidth;
     if (blur > 0) {
-      ctx.shadowColor = 'rgba(255, 90, 31, 0.82)';
+      ctx.shadowColor = 'rgba(0, 102, 255, 0.82)';
       ctx.shadowBlur = blur;
     }
     ctx.stroke();
@@ -2921,7 +2923,7 @@ function initHeroRing() {
     
     // Draw wobbly concentric layers
     // Layer 1: Outer secondary orange sweep
-    drawWobblyLoop(mouse.x, mouse.y, baseRadius * 1.15, 0.18, 'rgba(255, 90, 31, 0.35)', 1.5, time * 0.8, 4, 0, false);
+    drawWobblyLoop(mouse.x, mouse.y, baseRadius * 1.15, 0.18, 'rgba(0, 102, 255, 0.35)', 1.5, time * 0.8, 4, 0, false);
     // Layer 2: Main glowing ring and glass overlay fill
     drawWobblyLoop(mouse.x, mouse.y, baseRadius, 0.5, 'rgba(255, 255, 255, 0.95)', 7, time, 6, 26, true);
     // Layer 3: Opaque core
@@ -2952,7 +2954,7 @@ function initHeroRing() {
         particles.splice(i, 1);
         continue;
       }
-      ctx.fillStyle = `rgba(255, 90, 31, ${p.life * 0.8})`;
+      ctx.fillStyle = `rgba(0, 102, 255, ${p.life * 0.8})`;
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
       ctx.fill();
