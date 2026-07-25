@@ -1158,44 +1158,59 @@ footer{
   border-color: var(--line-strong);
 }
 
-/* ============ NODE GRAPH DIRECTORY ============ */
+/* ============ NODE GRAPH DIRECTORY (FUTURISTIC RADIAL MAP) ============ */
+.work-section {
+  background: #080d21;
+  color: #ffffff;
+}
+.work-section .eyebrow {
+  color: #4B6ABD;
+}
+.work-section .section-head {
+  color: #ffffff;
+}
+.work-section .work-count {
+  color: rgba(255, 255, 255, 0.65);
+}
+
 .node-graph-viewport {
   position: absolute;
   inset: 0;
-  background-color: transparent;
-  background-image: radial-gradient(rgba(22, 20, 15, 0.08) 1.2px, transparent 1.2px);
-  background-size: 24px 24px;
+  background-color: #080d21;
+  background-image: 
+    linear-gradient(rgba(75, 106, 189, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(75, 106, 189, 0.08) 1px, transparent 1px);
+  background-size: 32px 32px;
   overflow: hidden;
-  cursor: grab;
+  cursor: default;
   user-select: none;
   box-sizing: border-box;
-}
-.node-graph-viewport:active {
-  cursor: grabbing;
 }
 .node-reset-btn {
   position: absolute;
   top: 24px;
   right: 24px;
-  width: 40px;
-  height: 40px;
-  background: var(--paper);
-  border: 1px solid var(--line-strong);
+  width: 42px;
+  height: 42px;
+  background: rgba(16, 23, 54, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(75, 106, 189, 0.4);
   border-radius: 50%;
-  color: var(--ink);
+  color: #4B6ABD;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  z-index: 15;
+  z-index: 25;
   transition: all 0.3s var(--ease);
-  box-shadow: 0 4px 12px rgba(22, 20, 15, 0.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 .node-reset-btn:hover {
-  background: var(--blue);
-  border-color: var(--blue);
+  background: #4B6ABD;
+  border-color: #4B6ABD;
   color: #fff;
-  transform: scale(1.05);
+  transform: scale(1.1);
+  box-shadow: 0 0 25px rgba(75, 106, 189, 0.6);
 }
 .node-reset-btn svg {
   transition: transform 0.4s var(--ease);
@@ -1208,122 +1223,146 @@ footer{
 }
 
 .node-graph-inner {
-  width: 1200px;
-  height: 600px;
+  width: 1400px;
+  height: 860px;
   position: absolute;
   left: 50%;
-  top: 52%;
+  top: 54%;
   transform: translate(-50%, -50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 80px;
   box-sizing: border-box;
 }
-.node-row {
-  display: flex;
-  justify-content: center;
-  gap: 120px;
-  width: 100%;
-  position: relative;
-  z-index: 5;
-}
+
 .node-card {
-  width: 290px;
-  background: var(--bg-warm);
-  border: 1px solid var(--line-strong);
-  border-radius: 8px;
-  box-shadow: 0 12px 28px rgba(22, 20, 15, 0.08);
-  position: relative;
-  z-index: 5;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  position: absolute;
+  background: #111836;
+  border: 1px solid rgba(75, 106, 189, 0.35);
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45), 0 0 15px rgba(75, 106, 189, 0.1);
+  z-index: 10;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
   cursor: grab;
+  user-select: none;
 }
 .node-card:active {
   cursor: grabbing;
 }
 .node-card:hover {
-  border-color: var(--blue);
+  border-color: #4B6ABD;
+  box-shadow: 0 16px 35px rgba(0, 0, 0, 0.6), 0 0 25px rgba(75, 106, 189, 0.4);
 }
-.node-header {
-  padding: 10px 14px;
-  border-radius: 7px 7px 0 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: #fff;
-  font-family: var(--font-sans);
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-}
-.node-header.green, .node-header.blue { background: var(--blue); }
-.node-header.purple { background: var(--ink); }
-.node-header.orange { background: var(--ink-soft); }
 
-.node-header-menu {
+/* Center Hub Card */
+.node-card.center-hub {
+  width: 180px;
+  height: 130px;
+  background: linear-gradient(135deg, #182352 0%, #0d1533 100%);
+  border: 2px solid #4B6ABD;
+  border-radius: 16px;
+  box-shadow: 0 0 45px rgba(75, 106, 189, 0.45), inset 0 0 25px rgba(75, 106, 189, 0.2);
   display: flex;
   flex-direction: column;
-  gap: 2px;
-  opacity: 0.7;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  text-align: center;
+  z-index: 12;
 }
-.node-header-menu span {
-  width: 3px;
-  height: 3px;
-  background: #fff;
-  border-radius: 50%;
-}
-.node-body {
-  padding: 14px;
-  background: var(--bg-warm);
-  border-radius: 0 0 7px 7px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
-  line-height: 1.6;
-  color: var(--ink);
-}
-.node-row-item {
+.hub-icon {
+  width: 34px;
+  height: 34px;
+  background: rgba(75, 106, 189, 0.22);
+  border: 1px solid #4B6ABD;
+  border-radius: 10px;
   display: flex;
-  justify-content: space-between;
-  padding: 4px 0;
-  border-bottom: 1px solid rgba(22, 20, 15, 0.05);
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  margin-bottom: 8px;
+  box-shadow: 0 0 12px rgba(75, 106, 189, 0.4);
 }
-.node-row-item:last-child {
-  border-bottom: none;
+.hub-subtag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #4B6ABD;
+  margin-bottom: 2px;
 }
-.node-row-item .key {
-  color: var(--ink-soft);
+.hub-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #ffffff;
 }
-.node-row-item .val {
-  color: var(--blue);
-  font-weight: 600;
+
+/* Outer Project Radial Cards */
+.node-card.project-node {
+  width: 195px;
+  overflow: hidden;
 }
-.node-socket {
+.node-thumb {
+  width: 100%;
+  height: 96px;
+  position: relative;
+  overflow: hidden;
+  background: #080d21;
+}
+.node-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s var(--ease);
+}
+.node-card:hover .node-thumb img {
+  transform: scale(1.08);
+}
+.node-plus-btn {
   position: absolute;
-  width: 10px;
-  height: 10px;
-  background: var(--paper);
-  border: 2px solid var(--blue);
+  top: 8px;
+  right: 8px;
+  width: 22px;
+  height: 22px;
+  background: rgba(8, 13, 33, 0.75);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
   border-radius: 50%;
-  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  transition: all 0.3s ease;
 }
-.node-socket.bottom-socket {
-  bottom: -6px;
-  left: 50%;
-  transform: translateX(-50%);
-  border-color: var(--blue);
+.node-card:hover .node-plus-btn {
+  background: #4B6ABD;
+  border-color: #4B6ABD;
 }
-.node-socket.top-socket {
-  top: -6px;
-  left: 50%;
-  transform: translateX(-50%);
+.node-card-body {
+  padding: 10px 12px 12px;
 }
-#socket-in-left {
-  border-color: var(--ink);
+.node-cat-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8.5px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #4B6ABD;
+  margin-bottom: 4px;
+  display: block;
 }
-#socket-in-right {
-  border-color: var(--ink-soft);
+.node-card-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.3;
 }
+
+/* Wires SVG */
 .node-graph-svg {
   position: absolute;
   top: 0;
@@ -1331,12 +1370,24 @@ footer{
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 2;
+  z-index: 3;
 }
-.node-path {
+.wire-path-bg {
   fill: none;
-  stroke-width: 2.5px;
-  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.15));
+  stroke-width: 2px;
+  opacity: 0.6;
+}
+.wire-path-pulse {
+  fill: none;
+  stroke-width: 3px;
+  stroke-dasharray: 8 36;
+  stroke-linecap: round;
+  animation: wirePulseAnim 2.2s linear infinite;
+  opacity: 0.95;
+}
+@keyframes wirePulseAnim {
+  from { stroke-dashoffset: 88px; }
+  to { stroke-dashoffset: 0px; }
 }
 .node-path.left {
   stroke: var(--ink);
@@ -1480,74 +1531,105 @@ footer{
       </svg>
     </button>
     <div class="node-graph-inner">
-      <!-- SVG Connectors -->
-      <svg class="node-graph-svg">
-        <defs>
-          <marker id="arrow-left" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-            <path d="M 0 1 L 10 5 L 0 9 z" fill="#16140F" />
-          </marker>
-          <marker id="arrow-right" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-            <path d="M 0 1 L 10 5 L 0 9 z" fill="#4A463E" />
-          </marker>
-        </defs>
-        <path id="path-left" class="node-path left" marker-end="url(#arrow-left)" />
-        <path id="path-right" class="node-path right" marker-end="url(#arrow-right)" />
+      <!-- SVG Animated Wires -->
+      <svg class="node-graph-svg" id="nodeGraphSvg">
+        <g id="wiresGroup"></g>
       </svg>
       
-      <!-- Top Row: Work Node -->
-      <div class="node-row">
-        <div class="node-card">
-          <div class="node-header green">
-            <span>SelectedWork</span>
-            <div class="node-header-menu"><span></span><span></span><span></span></div>
-          </div>
-          <div class="node-body">
-            <div class="node-row-item"><span class="key">01_MedicalApp</span><span class="val">VR</span></div>
-            <div class="node-row-item"><span class="key">02_BusConfig</span><span class="val">PC</span></div>
-            <div class="node-row-item"><span class="key">03_AgriVR</span><span class="val">VR</span></div>
-            <div class="node-row-item"><span class="key">04_ArchInterior</span><span class="val">PC</span></div>
-            <div class="node-row-item"><span class="key">05_InteriorRender</span><span class="val">UE5</span></div>
-            <div class="node-row-item"><span class="key">06_FurnConfig</span><span class="val">UE5</span></div>
-            <div class="node-row-item"><span class="key">07_WebApps</span><span class="val">JS</span></div>
-          </div>
-          <div class="node-socket bottom-socket" id="socket-out"></div>
+      <!-- CENTER HUB NODE -->
+      <div class="node-card center-hub" id="hub-center" style="left: 700px; top: 430px; transform: translate(-50%, -50%);">
+        <div class="hub-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        </div>
+        <span class="hub-subtag">SOURCE PIPELINE</span>
+        <span class="hub-title">BuilderFlow</span>
+      </div>
+
+      <!-- RADIAL PROJECT NODES -->
+      <!-- Left Column Nodes -->
+      <div class="node-card project-node" id="node-vr-medical" data-target-id="vr-medical" data-color="#FF2A85" style="left: 110px; top: 110px;">
+        <div class="node-thumb"><img src="images/VRMedicalApp01.jpg" alt="VR Medical App"><div class="node-plus-btn">+</div></div>
+        <div class="node-card-body">
+          <span class="node-cat-tag" style="color:#FF2A85;">REALITY CAPTURE</span>
+          <div class="node-card-title">VR Medical App</div>
         </div>
       </div>
-      
-      <!-- Bottom Row: UE and WebApp Nodes -->
-      <div class="node-row">
-        <!-- Left Card: Unreal Engine -->
-        <div class="node-card">
-          <div class="node-header purple">
-            <span>UnrealEngine</span>
-            <div class="node-header-menu"><span></span><span></span><span></span></div>
-          </div>
-          <div class="node-body">
-            <div class="node-row-item"><span class="key">vr_medical</span><span class="val">Quest2</span></div>
-            <div class="node-row-item"><span class="key">bus_config</span><span class="val">RTX</span></div>
-            <div class="node-row-item"><span class="key">agri_vr</span><span class="val">Learn</span></div>
-            <div class="node-row-item"><span class="key">arch_viz</span><span class="val">Multi</span></div>
-            <div class="node-row-item"><span class="key">interior_light</span><span class="val">Lumen</span></div>
-            <div class="node-row-item"><span class="key">furniture_config</span><span class="val">DA</span></div>
-          </div>
-          <div class="node-socket top-socket" id="socket-in-left"></div>
-         </div>
-        
-        <!-- Right Card: Web Applications -->
-        <div class="node-card">
-          <div class="node-header blue">
-            <span>WebApplications</span>
-            <div class="node-header-menu"><span></span><span></span><span></span></div>
-          </div>
-          <div class="node-body">
-            <div class="node-row-item"><span class="key">3d_scan_tour</span><span class="val">Online</span></div>
-            <div class="node-row-item"><span class="key">site_planner</span><span class="val">Interactive</span></div>
-            <div class="node-row-item"><span class="key">floor_planner</span><span class="val">2D_View</span></div>
-            <div class="node-row-item"><span class="key">360_virtual_tour</span><span class="val">krpano / 3d_Vista</span></div>
-          </div>
-          <div class="node-socket top-socket" id="socket-in-right"></div>
+
+      <div class="node-card project-node" id="node-bus-config" data-target-id="bus-configurator" data-color="#A100FF" style="left: 90px; top: 350px;">
+        <div class="node-thumb"><img src="images/BusConfigurator01.jpg" alt="Bus Configurator"><div class="node-plus-btn">+</div></div>
+        <div class="node-card-body">
+          <span class="node-cat-tag" style="color:#A100FF;">AUTOMOTIVE RTX</span>
+          <div class="node-card-title">Bus Configurator</div>
         </div>
       </div>
+
+      <div class="node-card project-node" id="node-agri-vr" data-target-id="agri-vr" data-color="#FF5202" style="left: 110px; top: 590px;">
+        <div class="node-thumb"><img src="images/ArchitecturalGame01.jpg" alt="Agri VR"><div class="node-plus-btn">+</div></div>
+        <div class="node-card-body">
+          <span class="node-cat-tag" style="color:#FF5202;">EDUCATION VR</span>
+          <div class="node-card-title">Agri VR Simulation</div>
+        </div>
+      </div>
+
+      <!-- Top Column Nodes -->
+      <div class="node-card project-node" id="node-arch-viz" data-target-id="arch-viz" data-color="#00E676" style="left: 450px; top: 70px;">
+        <div class="node-thumb"><img src="images/ArchitecturalGame03.jpg" alt="Arch Viz"><div class="node-plus-btn">+</div></div>
+        <div class="node-card-body">
+          <span class="node-cat-tag" style="color:#00E676;">MULTIPLAYER ARCH</span>
+          <div class="node-card-title">Interior Viz</div>
+        </div>
+      </div>
+
+      <div class="node-card project-node" id="node-interior-render" data-target-id="interior-rendering" data-color="#00E5FF" style="left: 760px; top: 70px;">
+        <div class="node-thumb"><img src="images/ArchitecturalGame04.jpg" alt="Interior Render"><div class="node-plus-btn">+</div></div>
+        <div class="node-card-body">
+          <span class="node-cat-tag" style="color:#00E5FF;">UE5 PATH TRACING</span>
+          <div class="node-card-title">Lighting Pipeline</div>
+        </div>
+      </div>
+
+      <!-- Right Column Nodes -->
+      <div class="node-card project-node" id="node-3d-scan" data-target-id="web-apps" data-color="#2979FF" style="left: 1095px; top: 110px;">
+        <div class="node-thumb"><img src="images/interactive3Dscan.jpg" alt="3D Scan Tour"><div class="node-plus-btn">+</div></div>
+        <div class="node-card-body">
+          <span class="node-cat-tag" style="color:#2979FF;">3D GAUSSIAN SPLAT</span>
+          <div class="node-card-title">3D Scanning Tour</div>
+        </div>
+      </div>
+
+      <div class="node-card project-node" id="node-site-planner" data-target-id="web-apps" data-color="#651FFF" style="left: 1115px; top: 350px;">
+        <div class="node-thumb"><img src="images/interactiveSiteplanner.jpg" alt="Site Planner"><div class="node-plus-btn">+</div></div>
+        <div class="node-card-body">
+          <span class="node-cat-tag" style="color:#651FFF;">INTERACTIVE SALES</span>
+          <div class="node-card-title">Interactive Site Plan</div>
+        </div>
+      </div>
+
+      <div class="node-card project-node" id="node-floor-planner" data-target-id="web-apps" data-color="#00B0FF" style="left: 1095px; top: 590px;">
+        <div class="node-thumb"><img src="images/interactivefloorplanner.png" alt="Floor Planner"><div class="node-plus-btn">+</div></div>
+        <div class="node-card-body">
+          <span class="node-cat-tag" style="color:#00B0FF;">INTERACTIVE SALES</span>
+          <div class="node-card-title">Interactive Floor Plan</div>
+        </div>
+      </div>
+
+      <!-- Bottom Column Nodes -->
+      <div class="node-card project-node" id="node-furniture-config" data-target-id="furniture-configurator" data-color="#D500F9" style="left: 450px; top: 670px;">
+        <div class="node-thumb"><img src="images/interiorRendering01.jpeg" alt="Furniture Configurator"><div class="node-plus-btn">+</div></div>
+        <div class="node-card-body">
+          <span class="node-cat-tag" style="color:#D500F9;">DATA ASSET WORKFLOW</span>
+          <div class="node-card-title">Furniture Configurator</div>
+        </div>
+      </div>
+
+      <div class="node-card project-node" id="node-360-tour" data-target-id="web-apps" data-color="#FF9100" style="left: 760px; top: 670px;">
+        <div class="node-thumb"><img src="images/360VirtualTour.jpg" alt="360 Tour"><div class="node-plus-btn">+</div></div>
+        <div class="node-card-body">
+          <span class="node-cat-tag" style="color:#FF9100;">IMMERSIVE EXPERIENCES</span>
+          <div class="node-card-title">360° Virtual Tour</div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -2488,47 +2570,49 @@ function setFeaturedImages(){
   if (photo && ASSETS.profile) photo.src = ASSETS.profile;
 }
 
-// ==================== NODE CONNECTOR DRAW LOGIC ====================
+// ==================== NODE CONNECTOR DRAW LOGIC (FUTURISTIC RADIAL WIRES) ====================
 function drawNodeConnectors() {
   const container = document.querySelector('.node-graph-inner');
-  if (!container) return;
+  const hub = document.getElementById('hub-center');
+  const wiresGroup = document.getElementById('wiresGroup');
+  if (!container || !hub || !wiresGroup) return;
+
   const containerRect = container.getBoundingClientRect();
-  
-  // Calculate dynamic scale factor based on screen container layout
   const scale = (containerRect.width / container.offsetWidth) || 1;
+
+  const hubRect = hub.getBoundingClientRect();
+  const hubX = (hubRect.left + hubRect.width / 2 - containerRect.left) / scale;
+  const hubY = (hubRect.top + hubRect.height / 2 - containerRect.top) / scale;
+
+  const projectNodes = document.querySelectorAll('.node-card.project-node');
   
-  const pathLeft = document.getElementById('path-left');
-  const pathRight = document.getElementById('path-right');
-  
-  const socketOut = document.getElementById('socket-out');
-  const socketInLeft = document.getElementById('socket-in-left');
-  const socketInRight = document.getElementById('socket-in-right');
-  
-  if (socketOut && socketInLeft && pathLeft) {
-    const rOut = socketOut.getBoundingClientRect();
-    const rInLeft = socketInLeft.getBoundingClientRect();
-    
-    const x1 = (rOut.left + rOut.width / 2 - containerRect.left) / scale;
-    const y1 = (rOut.top + rOut.height / 2 - containerRect.top) / scale;
-    const x2 = (rInLeft.left + rInLeft.width / 2 - containerRect.left) / scale;
-    const y2 = (rInLeft.top + rInLeft.height / 2 - containerRect.top) / scale;
-    
-    const controlY = y1 + (y2 - y1) * 0.45;
-    pathLeft.setAttribute('d', `M ${x1} ${y1} C ${x1} ${controlY}, ${x2} ${controlY}, ${x2} ${y2}`);
-  }
-  
-  if (socketOut && socketInRight && pathRight) {
-    const rOut = socketOut.getBoundingClientRect();
-    const rInRight = socketInRight.getBoundingClientRect();
-    
-    const x1 = (rOut.left + rOut.width / 2 - containerRect.left) / scale;
-    const y1 = (rOut.top + rOut.height / 2 - containerRect.top) / scale;
-    const x2 = (rInRight.left + rInRight.width / 2 - containerRect.left) / scale;
-    const y2 = (rInRight.top + rInRight.height / 2 - containerRect.top) / scale;
-    
-    const controlY = y1 + (y2 - y1) * 0.45;
-    pathRight.setAttribute('d', `M ${x1} ${y1} C ${x1} ${controlY}, ${x2} ${controlY}, ${x2} ${y2}`);
-  }
+  let svgContent = '';
+
+  projectNodes.forEach(node => {
+    const color = node.getAttribute('data-color') || '#4B6ABD';
+    const nodeRect = node.getBoundingClientRect();
+    const nodeX = (nodeRect.left + nodeRect.width / 2 - containerRect.left) / scale;
+    const nodeY = (nodeRect.top + nodeRect.height / 2 - containerRect.top) / scale;
+
+    const dx = nodeX - hubX;
+    const dy = nodeY - hubY;
+    const dist = Math.hypot(dx, dy);
+
+    // Smooth curve control points calculation
+    const cx1 = hubX + (dx * 0.45);
+    const cy1 = hubY + (dy * 0.25);
+    const cx2 = nodeX - (dx * 0.25);
+    const cy2 = nodeY - (dy * 0.45);
+
+    const d = `M ${hubX} ${hubY} C ${cx1} ${cy1}, ${cx2} ${cy2}, ${nodeX} ${nodeY}`;
+
+    // Base glowing wire
+    svgContent += `<path class="wire-path-bg" d="${d}" stroke="${color}" />`;
+    // Animated pulse wire
+    svgContent += `<path class="wire-path-pulse" d="${d}" stroke="${color}" />`;
+  });
+
+  wiresGroup.innerHTML = svgContent;
 }
 
 // ==================== NODE DRAG & PAN LOGIC ====================
@@ -2635,7 +2719,18 @@ function setupNodeDragging() {
     }
   });
 
-  window.addEventListener('mouseup', () => {
+  window.addEventListener('mouseup', (e) => {
+    if (isDraggingNode && activeNode) {
+      let dX = Math.abs(e.clientX - nodeStartX);
+      let dY = Math.abs(e.clientY - nodeStartY);
+      if (dX < 6 && dY < 6 && activeNode.classList.contains('project-node')) {
+        const targetId = activeNode.getAttribute('data-target-id');
+        if (targetId) {
+          const el = document.getElementById(targetId);
+          if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    }
     isDraggingNode = false;
     activeNode = null;
   });
