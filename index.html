@@ -1319,44 +1319,42 @@ footer{
 }
 .wire-strand-sub {
   fill: none;
-  stroke: rgba(75, 106, 189, 0.45);
   stroke-width: 1.2px;
+  opacity: 0.45;
 }
 .wire-path-bg {
   fill: none;
-  stroke: #16140F;
   stroke-width: 1.8px;
-  opacity: 0.85;
+  opacity: 0.65;
 }
 .wire-path-pulse {
   fill: none;
-  stroke: #4B6ABD;
   stroke-width: 3.5px;
   stroke-dasharray: 14 100;
   stroke-linecap: round;
-  filter: drop-shadow(0 0 6px #4B6ABD);
-  animation: wirePulseFlow 2.2s linear infinite;
+  animation: wirePulseFlow 2s linear infinite;
+  opacity: 0.95;
 }
 @keyframes wirePulseFlow {
   from { stroke-dashoffset: 114px; }
   to { stroke-dashoffset: 0px; }
 }
 
-/* Colorful Glassmorphic Project Nodes */
+/* Dark Glass Cards & Matching Wire Glows */
 .node-card.project-node {
   width: 185px;
-  background: rgba(255, 255, 255, 0.18);
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background: rgba(15, 23, 42, 0.88);
+  backdrop-filter: blur(14px) saturate(180%);
+  -webkit-backdrop-filter: blur(14px) saturate(180%);
   border: 1.5px solid var(--card-accent, #4B6ABD);
   border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(22, 20, 15, 0.04), 0 0 18px var(--card-glow, rgba(75, 106, 189, 0.2));
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), 0 0 16px var(--card-glow, rgba(75, 106, 189, 0.2));
   transition: all 0.3s var(--ease);
   overflow: hidden;
 }
 .node-card.project-node:hover {
   border-color: var(--card-accent, #4B6ABD);
-  box-shadow: 0 12px 30px rgba(22, 20, 15, 0.12), 0 0 25px var(--card-glow, rgba(75, 106, 189, 0.35));
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 25px var(--card-glow, rgba(75, 106, 189, 0.45));
   transform: translateY(-3px) scale(1.02);
 }
 .node-glass-badge {
@@ -1375,22 +1373,24 @@ footer{
 .badge-icon {
   width: 14px;
   height: 14px;
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(0, 0, 0, 0.3);
   border-radius: 50%;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   font-size: 10px;
   font-weight: 900;
+  color: #ffffff;
 }
 .node-card-body {
   padding: 10px 12px 12px;
+  background: transparent;
 }
 .node-card-title {
   font-family: 'Space Grotesk', sans-serif;
   font-size: 12.5px;
   font-weight: 700;
-  color: var(--ink);
+  color: #ffffff;
   line-height: 1.3;
 }
 
@@ -1557,23 +1557,23 @@ footer{
         <span class="hub-title">Work</span>
       </div>
 
-      <!-- COLORFUL GLASSMOPHIC PROJECT NODES -->
+      <!-- COLORFUL GLASSMOPHIC PROJECT NODES WITH MATCHING COLOR WIRES -->
       <!-- Top Row -->
-      <div class="node-card project-node node-green" id="node-arch-viz" data-target-id="arch-viz" style="left: 380px; top: 50px;">
+      <div class="node-card project-node node-green" id="node-arch-viz" data-target-id="arch-viz" data-color="#00C853" style="left: 380px; top: 50px;">
         <div class="node-glass-badge"><span class="badge-icon">+</span> MULTIPLAYER ARCH</div>
         <div class="node-card-body">
           <div class="node-card-title">Interior Viz</div>
         </div>
       </div>
 
-      <div class="node-card project-node node-cyan" id="node-interior-render" data-target-id="interior-rendering" style="left: 640px; top: 50px; transform: translateX(-50%);">
+      <div class="node-card project-node node-cyan" id="node-interior-render" data-target-id="interior-rendering" data-color="#00B0FF" style="left: 640px; top: 50px; transform: translateX(-50%);">
         <div class="node-glass-badge"><span class="badge-icon">+</span> UE5 PATH TRACING</div>
         <div class="node-card-body">
           <div class="node-card-title">Lighting Pipeline</div>
         </div>
       </div>
 
-      <div class="node-card project-node node-blue" id="node-3d-scan" data-target-id="web-apps" style="left: 900px; top: 50px;">
+      <div class="node-card project-node node-blue" id="node-3d-scan" data-target-id="web-apps" data-color="#2979FF" style="left: 900px; top: 50px;">
         <div class="node-glass-badge"><span class="badge-icon">+</span> 3D GAUSSIAN SPLAT</div>
         <div class="node-card-body">
           <div class="node-card-title">3D Scanning Tour</div>
@@ -1581,14 +1581,14 @@ footer{
       </div>
 
       <!-- Mid-Top Row -->
-      <div class="node-card project-node node-pink" id="node-vr-medical" data-target-id="vr-medical" style="left: 170px; top: 140px;">
+      <div class="node-card project-node node-pink" id="node-vr-medical" data-target-id="vr-medical" data-color="#FF2A85" style="left: 170px; top: 140px;">
         <div class="node-glass-badge"><span class="badge-icon">+</span> HEALTHCARE VR</div>
         <div class="node-card-body">
           <div class="node-card-title">VR Medical App</div>
         </div>
       </div>
 
-      <div class="node-card project-node node-indigo" id="node-site-planner" data-target-id="web-apps" style="left: 1110px; top: 140px;">
+      <div class="node-card project-node node-indigo" id="node-site-planner" data-target-id="web-apps" data-color="#651FFF" style="left: 1110px; top: 140px;">
         <div class="node-glass-badge"><span class="badge-icon">+</span> INTERACTIVE SALES</div>
         <div class="node-card-body">
           <div class="node-card-title">Interactive Site Plan</div>
@@ -1596,14 +1596,14 @@ footer{
       </div>
 
       <!-- Mid-Bottom Row -->
-      <div class="node-card project-node node-purple" id="node-bus-config" data-target-id="bus-configurator" style="left: 170px; top: 380px;">
+      <div class="node-card project-node node-purple" id="node-bus-config" data-target-id="bus-configurator" data-color="#A100FF" style="left: 170px; top: 380px;">
         <div class="node-glass-badge"><span class="badge-icon">+</span> AUTOMOTIVE RTX</div>
         <div class="node-card-body">
           <div class="node-card-title">Bus Configurator</div>
         </div>
       </div>
 
-      <div class="node-card project-node node-sky" id="node-floor-planner" data-target-id="web-apps" style="left: 1110px; top: 380px;">
+      <div class="node-card project-node node-sky" id="node-floor-planner" data-target-id="web-apps" data-color="#0284C7" style="left: 1110px; top: 380px;">
         <div class="node-glass-badge"><span class="badge-icon">+</span> INTERACTIVE SALES</div>
         <div class="node-card-body">
           <div class="node-card-title">Interactive Floor Plan</div>
@@ -1611,21 +1611,21 @@ footer{
       </div>
 
       <!-- Bottom Row -->
-      <div class="node-card project-node node-orange" id="node-agri-vr" data-target-id="agri-vr" style="left: 380px; top: 470px;">
+      <div class="node-card project-node node-orange" id="node-agri-vr" data-target-id="agri-vr" data-color="#FF5202" style="left: 380px; top: 470px;">
         <div class="node-glass-badge"><span class="badge-icon">+</span> EDUCATION VR</div>
         <div class="node-card-body">
           <div class="node-card-title">Agri VR Simulation</div>
         </div>
       </div>
 
-      <div class="node-card project-node node-magenta" id="node-furniture-config" data-target-id="furniture-configurator" style="left: 640px; top: 470px; transform: translateX(-50%);">
+      <div class="node-card project-node node-magenta" id="node-furniture-config" data-target-id="furniture-configurator" data-color="#D500F9" style="left: 640px; top: 470px; transform: translateX(-50%);">
         <div class="node-glass-badge"><span class="badge-icon">+</span> DATA ASSET WORKFLOW</div>
         <div class="node-card-body">
           <div class="node-card-title">Furniture Configurator</div>
         </div>
       </div>
 
-      <div class="node-card project-node node-amber" id="node-360-tour" data-target-id="web-apps" style="left: 900px; top: 470px;">
+      <div class="node-card project-node node-amber" id="node-360-tour" data-target-id="web-apps" data-color="#FF9100" style="left: 900px; top: 470px;">
         <div class="node-glass-badge"><span class="badge-icon">+</span> IMMERSIVE EXPERIENCES</div>
         <div class="node-card-body">
           <div class="node-card-title">360° Virtual Tour</div>
@@ -2572,7 +2572,7 @@ function setFeaturedImages(){
   if (photo && ASSETS.profile) photo.src = ASSETS.profile;
 }
 
-// ==================== NODE CONNECTOR DRAW LOGIC (3-STRAND FANNING RIBBON WIRES) ====================
+// ==================== NODE CONNECTOR DRAW LOGIC (MATCHING COLOR FANNING WIRES & SOCKET DOTS) ====================
 function drawNodeConnectors() {
   const container = document.querySelector('.node-graph-inner');
   const hub = document.getElementById('hub-center');
@@ -2591,6 +2591,7 @@ function drawNodeConnectors() {
   let svgContent = '';
 
   projectNodes.forEach(node => {
+    const color = node.getAttribute('data-color') || '#4B6ABD';
     const nodeRect = node.getBoundingClientRect();
     const nodeX = (nodeRect.left + nodeRect.width / 2 - containerRect.left) / scale;
     const nodeY = (nodeRect.top + nodeRect.height / 2 - containerRect.top) / scale;
@@ -2614,7 +2615,7 @@ function drawNodeConnectors() {
     const dMain = `M ${hubX} ${hubY} C ${cx1} ${cy1}, ${cx2} ${cy2}, ${nodeX} ${nodeY}`;
 
     // 2. Sub-strand 1 (Fans out left then right)
-    const bowAmt = 15;
+    const bowAmt = 14;
     const cx1_L = cx1 + nx * bowAmt;
     const cy1_L = cy1 + ny * bowAmt;
     const cx2_L = cx2 - nx * bowAmt;
@@ -2628,11 +2629,14 @@ function drawNodeConnectors() {
     const cy2_R = cy2 + ny * bowAmt;
     const dStrand2 = `M ${hubX} ${hubY} C ${cx1_R} ${cy1_R}, ${cx2_R} ${cy2_R}, ${nodeX} ${nodeY}`;
 
-    // Render 3 strands with explicit fill="none" to prevent black fills
-    svgContent += `<path fill="none" stroke="rgba(75, 106, 189, 0.45)" stroke-width="1.2" d="${dStrand1}" />`;
-    svgContent += `<path fill="none" stroke="rgba(75, 106, 189, 0.45)" stroke-width="1.2" d="${dStrand2}" />`;
-    svgContent += `<path fill="none" stroke="#16140F" stroke-width="1.8" opacity="0.85" d="${dMain}" />`;
-    svgContent += `<path fill="none" class="wire-path-pulse" d="${dMain}" />`;
+    // Render 3 strands matching node color
+    svgContent += `<path fill="none" class="wire-strand-sub" stroke="${color}" d="${dStrand1}" />`;
+    svgContent += `<path fill="none" class="wire-strand-sub" stroke="${color}" d="${dStrand2}" />`;
+    svgContent += `<path fill="none" class="wire-path-bg" stroke="${color}" d="${dMain}" />`;
+    svgContent += `<path fill="none" class="wire-path-pulse" stroke="${color}" filter="drop-shadow(0 0 6px ${color})" d="${dMain}" />`;
+
+    // Glowing Socket Dot at Node Edge
+    svgContent += `<circle cx="${nodeX}" cy="${nodeY}" r="3.5" fill="${color}" filter="drop-shadow(0 0 6px ${color})" />`;
   });
 
   wiresGroup.innerHTML = svgContent;
