@@ -1280,48 +1280,8 @@ footer{
 }
 
 /* Outer Project Radial Cards */
-.node-card.project-node {
-  width: 165px;
-  overflow: hidden;
-}
-.node-thumb {
-  width: 100%;
-  height: 80px;
-  position: relative;
-  overflow: hidden;
-  background: var(--bg-warm);
-}
-.node-thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.4s var(--ease);
-}
-.node-card:hover .node-thumb img {
-  transform: scale(1.08);
-}
-.node-plus-btn {
-  position: absolute;
-  top: 6px;
-  right: 6px;
-  width: 18px;
-  height: 18px;
-  background: rgba(22, 20, 15, 0.65);
-  backdrop-filter: blur(4px);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-size: 11px;
-  font-weight: 700;
-  transition: all 0.3s ease;
-}
-.node-card:hover .node-plus-btn {
-  background: var(--blue);
-  border-color: var(--blue);
-}
+
+
 .node-card-body {
   padding: 8px 10px 10px;
   background: var(--paper);
@@ -1344,7 +1304,7 @@ footer{
   line-height: 1.25;
 }
 
-/* Authentic Organic Spider-Man Web Shooter Wires (Flared Anchors, Helical Wraps, Knots & Energy Flow) */
+/* Sleek Node Cards & Glowing Energy Capsule Wires (Matching Image 1 & 3) */
 .node-graph-svg {
   position: absolute;
   top: 0;
@@ -1356,48 +1316,57 @@ footer{
 }
 .wire-path-bg {
   fill: none;
-  stroke: #ffffff;
-  stroke-width: 2.2px;
-  opacity: 0.95;
-  filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.4));
-}
-.wire-path-side {
-  fill: none;
-  stroke: rgba(255, 255, 255, 0.75);
-  stroke-width: 1.2px;
-  stroke-dasharray: 5 2;
-}
-.wire-path-spiral {
-  fill: none;
-  stroke: rgba(255, 255, 255, 0.85);
-  stroke-width: 1.1px;
-}
-.wire-path-tendon {
-  fill: none;
-  stroke: rgba(255, 255, 255, 0.8);
-  stroke-width: 1.2px;
-}
-.wire-cross-rib {
-  stroke: rgba(255, 255, 255, 0.75);
-  stroke-width: 1.4px;
-}
-.wire-knot {
-  fill: #ffffff;
-  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.9));
+  stroke: rgba(75, 106, 189, 0.35);
+  stroke-width: 2px;
 }
 .wire-path-pulse {
   fill: none;
-  stroke: #FFEE58;
-  stroke-width: 3.5px;
-  stroke-dasharray: 14 46;
+  stroke: #4B6ABD;
+  stroke-width: 4px;
+  stroke-dasharray: 16 110;
   stroke-linecap: round;
-  animation: spiderEnergyFlow 1.5s linear infinite;
-  opacity: 0.95;
-  filter: drop-shadow(0 0 6px #FFEE58);
+  filter: drop-shadow(0 0 7px #4B6ABD);
+  animation: wireGlowCapsule 2.2s linear infinite;
 }
-@keyframes spiderEnergyFlow {
-  from { stroke-dashoffset: 120px; }
+@keyframes wireGlowCapsule {
+  from { stroke-dashoffset: 126px; }
   to { stroke-dashoffset: 0px; }
+}
+
+/* Outer Project Radial Cards (No Thumbnails) */
+.node-card.project-node {
+  width: 175px;
+  overflow: hidden;
+  background: var(--paper);
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(22, 20, 15, 0.06);
+  transition: all 0.3s var(--ease);
+}
+.node-card.project-node:hover {
+  border-color: var(--blue);
+  box-shadow: 0 10px 24px rgba(75, 106, 189, 0.22);
+  transform: translateY(-2px);
+}
+.node-card-body {
+  padding: 12px 14px;
+}
+.node-cat-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 4px;
+  display: block;
+}
+.node-card-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.3;
 }
 .node-path.left {
   stroke: var(--ink);
@@ -1551,26 +1520,23 @@ footer{
         <span class="hub-title">Work</span>
       </div>
 
-      <!-- RADIAL PROJECT NODES (COMPACT BOUNDS) -->
+      <!-- RADIAL PROJECT NODES (NO THUMBNAILS) -->
       <!-- Top Row -->
-      <div class="node-card project-node" id="node-arch-viz" data-target-id="arch-viz" style="left: 380px; top: 35px;">
-        <div class="node-thumb"><img src="images/ArchitecturalGame03.jpg" alt="Arch Viz"><div class="node-plus-btn">+</div></div>
+      <div class="node-card project-node" id="node-arch-viz" data-target-id="arch-viz" style="left: 380px; top: 50px;">
         <div class="node-card-body">
           <span class="node-cat-tag">MULTIPLAYER ARCH</span>
           <div class="node-card-title">Interior Viz</div>
         </div>
       </div>
 
-      <div class="node-card project-node" id="node-interior-render" data-target-id="interior-rendering" style="left: 640px; top: 35px; transform: translateX(-50%);">
-        <div class="node-thumb"><img src="images/ArchitecturalGame04.jpg" alt="Interior Render"><div class="node-plus-btn">+</div></div>
+      <div class="node-card project-node" id="node-interior-render" data-target-id="interior-rendering" style="left: 640px; top: 50px; transform: translateX(-50%);">
         <div class="node-card-body">
           <span class="node-cat-tag">UE5 PATH TRACING</span>
           <div class="node-card-title">Lighting Pipeline</div>
         </div>
       </div>
 
-      <div class="node-card project-node" id="node-3d-scan" data-target-id="web-apps" style="left: 900px; top: 35px;">
-        <div class="node-thumb"><img src="images/interactive3Dscan.jpg" alt="3D Scan Tour"><div class="node-plus-btn">+</div></div>
+      <div class="node-card project-node" id="node-3d-scan" data-target-id="web-apps" style="left: 900px; top: 50px;">
         <div class="node-card-body">
           <span class="node-cat-tag">3D GAUSSIAN SPLAT</span>
           <div class="node-card-title">3D Scanning Tour</div>
@@ -1578,16 +1544,14 @@ footer{
       </div>
 
       <!-- Mid-Top Row -->
-      <div class="node-card project-node" id="node-vr-medical" data-target-id="vr-medical" style="left: 170px; top: 135px;">
-        <div class="node-thumb"><img src="images/VRMedicalApp01.jpg" alt="VR Medical App"><div class="node-plus-btn">+</div></div>
+      <div class="node-card project-node" id="node-vr-medical" data-target-id="vr-medical" style="left: 170px; top: 140px;">
         <div class="node-card-body">
           <span class="node-cat-tag">HEALTHCARE VR</span>
           <div class="node-card-title">VR Medical App</div>
         </div>
       </div>
 
-      <div class="node-card project-node" id="node-site-planner" data-target-id="web-apps" style="left: 1110px; top: 135px;">
-        <div class="node-thumb"><img src="images/interactiveSiteplanner.jpg" alt="Site Planner"><div class="node-plus-btn">+</div></div>
+      <div class="node-card project-node" id="node-site-planner" data-target-id="web-apps" style="left: 1110px; top: 140px;">
         <div class="node-card-body">
           <span class="node-cat-tag">INTERACTIVE SALES</span>
           <div class="node-card-title">Interactive Site Plan</div>
@@ -1595,16 +1559,14 @@ footer{
       </div>
 
       <!-- Mid-Bottom Row -->
-      <div class="node-card project-node" id="node-bus-config" data-target-id="bus-configurator" style="left: 170px; top: 395px;">
-        <div class="node-thumb"><img src="images/BusConfigurator01.jpg" alt="Bus Configurator"><div class="node-plus-btn">+</div></div>
+      <div class="node-card project-node" id="node-bus-config" data-target-id="bus-configurator" style="left: 170px; top: 380px;">
         <div class="node-card-body">
           <span class="node-cat-tag">AUTOMOTIVE RTX</span>
           <div class="node-card-title">Bus Configurator</div>
         </div>
       </div>
 
-      <div class="node-card project-node" id="node-floor-planner" data-target-id="web-apps" style="left: 1110px; top: 395px;">
-        <div class="node-thumb"><img src="images/interactivefloorplanner.png" alt="Floor Planner"><div class="node-plus-btn">+</div></div>
+      <div class="node-card project-node" id="node-floor-planner" data-target-id="web-apps" style="left: 1110px; top: 380px;">
         <div class="node-card-body">
           <span class="node-cat-tag">INTERACTIVE SALES</span>
           <div class="node-card-title">Interactive Floor Plan</div>
@@ -1612,24 +1574,21 @@ footer{
       </div>
 
       <!-- Bottom Row -->
-      <div class="node-card project-node" id="node-agri-vr" data-target-id="agri-vr" style="left: 380px; top: 490px;">
-        <div class="node-thumb"><img src="images/ArchitecturalGame01.jpg" alt="Agri VR"><div class="node-plus-btn">+</div></div>
+      <div class="node-card project-node" id="node-agri-vr" data-target-id="agri-vr" style="left: 380px; top: 470px;">
         <div class="node-card-body">
           <span class="node-cat-tag">EDUCATION VR</span>
           <div class="node-card-title">Agri VR Simulation</div>
         </div>
       </div>
 
-      <div class="node-card project-node" id="node-furniture-config" data-target-id="furniture-configurator" style="left: 640px; top: 490px; transform: translateX(-50%);">
-        <div class="node-thumb"><img src="images/interiorRendering01.jpeg" alt="Furniture Configurator"><div class="node-plus-btn">+</div></div>
+      <div class="node-card project-node" id="node-furniture-config" data-target-id="furniture-configurator" style="left: 640px; top: 470px; transform: translateX(-50%);">
         <div class="node-card-body">
           <span class="node-cat-tag">DATA ASSET WORKFLOW</span>
           <div class="node-card-title">Furniture Configurator</div>
         </div>
       </div>
 
-      <div class="node-card project-node" id="node-360-tour" data-target-id="web-apps" style="left: 900px; top: 490px;">
-        <div class="node-thumb"><img src="images/360VirtualTour.jpg" alt="360 Tour"><div class="node-plus-btn">+</div></div>
+      <div class="node-card project-node" id="node-360-tour" data-target-id="web-apps" style="left: 900px; top: 470px;">
         <div class="node-card-body">
           <span class="node-cat-tag">IMMERSIVE EXPERIENCES</span>
           <div class="node-card-title">360° Virtual Tour</div>
