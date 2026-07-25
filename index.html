@@ -1344,7 +1344,7 @@ footer{
   line-height: 1.25;
 }
 
-/* Spider-man Web Wires (White Web + Light Yellow Energy Flow) */
+/* Spider-man Multi-Strand Web Wires (Multi-Strand Web + Ribs + Yellow Energy Flow) */
 .node-graph-svg {
   position: absolute;
   top: 0;
@@ -1359,20 +1359,30 @@ footer{
   stroke: #ffffff;
   stroke-width: 1.8px;
   opacity: 0.95;
-  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.25));
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.3));
+}
+.wire-path-side {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.7);
+  stroke-width: 1px;
+  stroke-dasharray: 6 2;
+}
+.wire-cross-rib {
+  stroke: rgba(255, 255, 255, 0.65);
+  stroke-width: 1.2px;
 }
 .wire-path-pulse {
   fill: none;
   stroke: #FFEE58;
   stroke-width: 3.5px;
-  stroke-dasharray: 12 38;
+  stroke-dasharray: 12 42;
   stroke-linecap: round;
-  animation: spiderEnergyFlow 1.6s linear infinite;
+  animation: spiderEnergyFlow 1.5s linear infinite;
   opacity: 0.95;
-  filter: drop-shadow(0 0 5px #FFEE58);
+  filter: drop-shadow(0 0 6px #FFEE58);
 }
 @keyframes spiderEnergyFlow {
-  from { stroke-dashoffset: 100px; }
+  from { stroke-dashoffset: 108px; }
   to { stroke-dashoffset: 0px; }
 }
 .node-path.left {
@@ -2552,7 +2562,7 @@ function setFeaturedImages(){
   if (photo && ASSETS.profile) photo.src = ASSETS.profile;
 }
 
-// ==================== NODE CONNECTOR DRAW LOGIC (SPIDER-MAN WEB & YELLOW ENERGY FLOW) ====================
+// ==================== NODE CONNECTOR DRAW LOGIC (MULTI-STRAND SPIDER-MAN WEB BUNDLE) ====================
 function drawNodeConnectors() {
   const container = document.querySelector('.node-graph-inner');
   const hub = document.getElementById('hub-center');
@@ -2570,6 +2580,11 @@ function drawNodeConnectors() {
   
   let svgContent = '';
 
+  function getBezierPoint(t, p0, p1, p2, p3) {
+    const u = 1 - t;
+    return (u * u * u * p0) + (3 * u * u * t * p1) + (3 * u * t * t * p2) + (t * t * t * p3);
+  }
+
   projectNodes.forEach(node => {
     const nodeRect = node.getBoundingClientRect();
     const nodeX = (nodeRect.left + nodeRect.width / 2 - containerRect.left) / scale;
@@ -2577,19 +2592,51 @@ function drawNodeConnectors() {
 
     const dx = nodeX - hubX;
     const dy = nodeY - hubY;
+    const dist = Math.hypot(dx, dy);
+    if (dist === 0) return;
 
-    // Smooth organic web Bezier curve
+    // Normal vector perpendicular to main wire direction
+    const nx = -dy / dist;
+    const ny = dx / dist;
+
+    // Bezier control points
     const cx1 = hubX + (dx * 0.45);
     const cy1 = hubY + (dy * 0.25);
     const cx2 = nodeX - (dx * 0.25);
     const cy2 = nodeY - (dy * 0.45);
 
-    const d = `M ${hubX} ${hubY} C ${cx1} ${cy1}, ${cx2} ${cy2}, ${nodeX} ${nodeY}`;
+    // 1. Main Center Web Path
+    const dCenter = `M ${hubX} ${hubY} C ${cx1} ${cy1}, ${cx2} ${cy2}, ${nodeX} ${nodeY}`;
 
-    // Spider-man White Web base path
-    svgContent += `<path class="wire-path-bg" d="${d}" />`;
-    // Light Yellow Energy flow pulse
-    svgContent += `<path class="wire-path-pulse" d="${d}" />`;
+    // 2. Left Side Web Strand (offset 4px)
+    const offL = 4.5;
+    const dLeft = `M ${hubX + nx * (offL * 0.4)} ${hubY + ny * (offL * 0.4)} C ${cx1 + nx * offL} ${cy1 + ny * offL}, ${cx2 + nx * offL} ${cy2 + ny * offL}, ${nodeX + nx * (offL * 0.4)} ${nodeY + ny * (offL * 0.4)}`;
+
+    // 3. Right Side Web Strand (offset -4px)
+    const offR = -4.5;
+    const dRight = `M ${hubX + nx * (offR * 0.4)} ${hubY + ny * (offR * 0.4)} C ${cx1 + nx * offR} ${cy1 + ny * offR}, ${cx2 + nx * offR} ${cy2 + ny * offR}, ${nodeX + nx * (offR * 0.4)} ${nodeY + ny * (offR * 0.4)}`;
+
+    // Render Web Bundle Strands
+    svgContent += `<path class="wire-path-side" d="${dLeft}" />`;
+    svgContent += `<path class="wire-path-side" d="${dRight}" />`;
+    svgContent += `<path class="wire-path-bg" d="${dCenter}" />`;
+
+    # 4. Spider Web Cross-Filaments (Web Ribs) connecting strands at intervals
+    const tSteps = [0.2, 0.38, 0.56, 0.74, 0.88];
+    tSteps.forEach(t => {
+      const bx = getBezierPoint(t, hubX, cx1, cx2, nodeX);
+      const by = getBezierPoint(t, hubY, cy1, cy2, nodeY);
+      
+      const lx = bx + nx * offL;
+      const ly = by + ny * offL;
+      const rx = bx + nx * offR;
+      const ry = by + ny * offR;
+
+      svgContent += `<line class="wire-cross-rib" x1="${lx}" y1="${ly}" x2="${rx}" y2="${ry}" />`;
+    });
+
+    // 5. Light Yellow Energy Flow Pulse along center strand
+    svgContent += `<path class="wire-path-pulse" d="${dCenter}" />`;
   });
 
   wiresGroup.innerHTML = svgContent;
