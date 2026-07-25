@@ -1158,7 +1158,7 @@ footer{
   border-color: var(--line-strong);
 }
 
-/* ============ NODE GRAPH DIRECTORY (CLEAN RADIAL MAP) ============ */
+/* ============ NODE GRAPH DIRECTORY (SPIDER-MAN WEB & COMPACT RADIAL MAP) ============ */
 .work-section {
   background: rgba(250, 250, 247, 0.35);
   color: var(--ink);
@@ -1168,16 +1168,23 @@ footer{
 }
 .work-section .section-head {
   color: var(--ink);
+  font-size: clamp(22px, 3.2vw, 36px) !important;
+  line-height: 1.15 !important;
+  max-width: 550px;
+}
+.work-intro {
+  margin-bottom: 25px !important;
 }
 .work-section .work-count {
   color: var(--ink-soft);
+  max-width: 240px;
 }
 
 .node-graph-viewport {
   position: absolute;
   inset: 0;
   background-color: transparent;
-  background-image: radial-gradient(rgba(22, 20, 15, 0.09) 1.2px, transparent 1.2px);
+  background-image: radial-gradient(rgba(22, 20, 15, 0.08) 1.2px, transparent 1.2px);
   background-size: 24px 24px;
   overflow: hidden;
   cursor: default;
@@ -1186,10 +1193,10 @@ footer{
 }
 .node-reset-btn {
   position: absolute;
-  top: 24px;
-  right: 24px;
-  width: 42px;
-  height: 42px;
+  top: 20px;
+  right: 20px;
+  width: 38px;
+  height: 38px;
   background: var(--paper);
   border: 1px solid var(--line-strong);
   border-radius: 50%;
@@ -1220,11 +1227,11 @@ footer{
 }
 
 .node-graph-inner {
-  width: 1400px;
-  height: 860px;
+  width: 1280px;
+  height: 570px;
   position: absolute;
   left: 50%;
-  top: 54%;
+  top: 58%;
   transform: translate(-50%, -50%);
   box-sizing: border-box;
 }
@@ -1233,8 +1240,8 @@ footer{
   position: absolute;
   background: var(--bg-warm);
   border: 1px solid var(--line-strong);
-  border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(22, 20, 15, 0.08);
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(22, 20, 15, 0.08);
   z-index: 10;
   transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
   cursor: grab;
@@ -1245,63 +1252,41 @@ footer{
 }
 .node-card:hover {
   border-color: var(--blue);
-  box-shadow: 0 14px 30px rgba(75, 106, 189, 0.25);
+  box-shadow: 0 12px 28px rgba(75, 106, 189, 0.25);
 }
 
-/* Center Hub Card */
+/* Compact 'Work' Center Hub Card */
 .node-card.center-hub {
-  width: 180px;
-  height: 130px;
+  width: 84px;
+  height: 40px;
   background: var(--ink);
   border: 2px solid var(--blue);
-  border-radius: 16px;
-  box-shadow: 0 12px 30px rgba(22, 20, 15, 0.25);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 16px;
-  text-align: center;
-  z-index: 12;
-}
-.hub-icon {
-  width: 34px;
-  height: 34px;
-  background: rgba(75, 106, 189, 0.25);
-  border: 1px solid var(--blue);
   border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(22, 20, 15, 0.25), 0 0 12px rgba(75, 106, 189, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--blue);
-  margin-bottom: 8px;
-}
-.hub-subtag {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 8.5px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--blue);
-  margin-bottom: 2px;
+  padding: 0;
+  text-align: center;
+  z-index: 15;
 }
 .hub-title {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 14px;
-  font-weight: 900;
-  letter-spacing: 0.04em;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #ffffff;
 }
 
 /* Outer Project Radial Cards */
 .node-card.project-node {
-  width: 195px;
+  width: 165px;
   overflow: hidden;
 }
 .node-thumb {
   width: 100%;
-  height: 96px;
+  height: 80px;
   position: relative;
   overflow: hidden;
   background: var(--bg-warm);
@@ -1317,10 +1302,10 @@ footer{
 }
 .node-plus-btn {
   position: absolute;
-  top: 8px;
-  right: 8px;
-  width: 22px;
-  height: 22px;
+  top: 6px;
+  right: 6px;
+  width: 18px;
+  height: 18px;
   background: rgba(22, 20, 15, 0.65);
   backdrop-filter: blur(4px);
   border: 1px solid rgba(255, 255, 255, 0.4);
@@ -1329,7 +1314,7 @@ footer{
   align-items: center;
   justify-content: center;
   color: #fff;
-  font-size: 13px;
+  font-size: 11px;
   font-weight: 700;
   transition: all 0.3s ease;
 }
@@ -1338,28 +1323,28 @@ footer{
   border-color: var(--blue);
 }
 .node-card-body {
-  padding: 10px 12px 12px;
+  padding: 8px 10px 10px;
   background: var(--paper);
 }
 .node-cat-tag {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 8.5px;
+  font-size: 7.5px;
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--blue);
-  margin-bottom: 4px;
+  margin-bottom: 3px;
   display: block;
 }
 .node-card-title {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
   color: var(--ink);
-  line-height: 1.3;
+  line-height: 1.25;
 }
 
-/* Wires SVG */
+/* Spider-man Web Wires (White Web + Light Yellow Energy Flow) */
 .node-graph-svg {
   position: absolute;
   top: 0;
@@ -1371,19 +1356,23 @@ footer{
 }
 .wire-path-bg {
   fill: none;
-  stroke-width: 2px;
-  opacity: 0.6;
+  stroke: #ffffff;
+  stroke-width: 1.8px;
+  opacity: 0.95;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.25));
 }
 .wire-path-pulse {
   fill: none;
-  stroke-width: 3px;
-  stroke-dasharray: 8 36;
+  stroke: #FFEE58;
+  stroke-width: 3.5px;
+  stroke-dasharray: 12 38;
   stroke-linecap: round;
-  animation: wirePulseAnim 2.2s linear infinite;
+  animation: spiderEnergyFlow 1.6s linear infinite;
   opacity: 0.95;
+  filter: drop-shadow(0 0 5px #FFEE58);
 }
-@keyframes wirePulseAnim {
-  from { stroke-dashoffset: 88px; }
+@keyframes spiderEnergyFlow {
+  from { stroke-dashoffset: 100px; }
   to { stroke-dashoffset: 0px; }
 }
 .node-path.left {
@@ -1533,96 +1522,92 @@ footer{
         <g id="wiresGroup"></g>
       </svg>
       
-      <!-- CENTER HUB NODE -->
-      <div class="node-card center-hub" id="hub-center" style="left: 700px; top: 430px; transform: translate(-50%, -50%);">
-        <div class="hub-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-        </div>
-        <span class="hub-subtag">SOURCE PIPELINE</span>
-        <span class="hub-title">BuilderFlow</span>
+      <!-- CENTER HUB NODE (COMPACT 'WORK') -->
+      <div class="node-card center-hub" id="hub-center" style="left: 640px; top: 270px; transform: translate(-50%, -50%);">
+        <span class="hub-title">Work</span>
       </div>
 
-      <!-- RADIAL PROJECT NODES -->
-      <!-- Left Column Nodes -->
-      <div class="node-card project-node" id="node-vr-medical" data-target-id="vr-medical" data-color="#FF2A85" style="left: 110px; top: 110px;">
-        <div class="node-thumb"><img src="images/VRMedicalApp01.jpg" alt="VR Medical App"><div class="node-plus-btn">+</div></div>
-        <div class="node-card-body">
-          <span class="node-cat-tag" style="color:#FF2A85;">REALITY CAPTURE</span>
-          <div class="node-card-title">VR Medical App</div>
-        </div>
-      </div>
-
-      <div class="node-card project-node" id="node-bus-config" data-target-id="bus-configurator" data-color="#A100FF" style="left: 90px; top: 350px;">
-        <div class="node-thumb"><img src="images/BusConfigurator01.jpg" alt="Bus Configurator"><div class="node-plus-btn">+</div></div>
-        <div class="node-card-body">
-          <span class="node-cat-tag" style="color:#A100FF;">AUTOMOTIVE RTX</span>
-          <div class="node-card-title">Bus Configurator</div>
-        </div>
-      </div>
-
-      <div class="node-card project-node" id="node-agri-vr" data-target-id="agri-vr" data-color="#FF5202" style="left: 110px; top: 590px;">
-        <div class="node-thumb"><img src="images/ArchitecturalGame01.jpg" alt="Agri VR"><div class="node-plus-btn">+</div></div>
-        <div class="node-card-body">
-          <span class="node-cat-tag" style="color:#FF5202;">EDUCATION VR</span>
-          <div class="node-card-title">Agri VR Simulation</div>
-        </div>
-      </div>
-
-      <!-- Top Column Nodes -->
-      <div class="node-card project-node" id="node-arch-viz" data-target-id="arch-viz" data-color="#00E676" style="left: 450px; top: 70px;">
+      <!-- RADIAL PROJECT NODES (COMPACT BOUNDS) -->
+      <!-- Top Row -->
+      <div class="node-card project-node" id="node-arch-viz" data-target-id="arch-viz" style="left: 380px; top: 35px;">
         <div class="node-thumb"><img src="images/ArchitecturalGame03.jpg" alt="Arch Viz"><div class="node-plus-btn">+</div></div>
         <div class="node-card-body">
-          <span class="node-cat-tag" style="color:#00E676;">MULTIPLAYER ARCH</span>
+          <span class="node-cat-tag">MULTIPLAYER ARCH</span>
           <div class="node-card-title">Interior Viz</div>
         </div>
       </div>
 
-      <div class="node-card project-node" id="node-interior-render" data-target-id="interior-rendering" data-color="#00E5FF" style="left: 760px; top: 70px;">
+      <div class="node-card project-node" id="node-interior-render" data-target-id="interior-rendering" style="left: 640px; top: 35px; transform: translateX(-50%);">
         <div class="node-thumb"><img src="images/ArchitecturalGame04.jpg" alt="Interior Render"><div class="node-plus-btn">+</div></div>
         <div class="node-card-body">
-          <span class="node-cat-tag" style="color:#00E5FF;">UE5 PATH TRACING</span>
+          <span class="node-cat-tag">UE5 PATH TRACING</span>
           <div class="node-card-title">Lighting Pipeline</div>
         </div>
       </div>
 
-      <!-- Right Column Nodes -->
-      <div class="node-card project-node" id="node-3d-scan" data-target-id="web-apps" data-color="#2979FF" style="left: 1095px; top: 110px;">
+      <div class="node-card project-node" id="node-3d-scan" data-target-id="web-apps" style="left: 900px; top: 35px;">
         <div class="node-thumb"><img src="images/interactive3Dscan.jpg" alt="3D Scan Tour"><div class="node-plus-btn">+</div></div>
         <div class="node-card-body">
-          <span class="node-cat-tag" style="color:#2979FF;">3D GAUSSIAN SPLAT</span>
+          <span class="node-cat-tag">3D GAUSSIAN SPLAT</span>
           <div class="node-card-title">3D Scanning Tour</div>
         </div>
       </div>
 
-      <div class="node-card project-node" id="node-site-planner" data-target-id="web-apps" data-color="#651FFF" style="left: 1115px; top: 350px;">
+      <!-- Mid-Top Row -->
+      <div class="node-card project-node" id="node-vr-medical" data-target-id="vr-medical" style="left: 170px; top: 135px;">
+        <div class="node-thumb"><img src="images/VRMedicalApp01.jpg" alt="VR Medical App"><div class="node-plus-btn">+</div></div>
+        <div class="node-card-body">
+          <span class="node-cat-tag">HEALTHCARE VR</span>
+          <div class="node-card-title">VR Medical App</div>
+        </div>
+      </div>
+
+      <div class="node-card project-node" id="node-site-planner" data-target-id="web-apps" style="left: 1110px; top: 135px;">
         <div class="node-thumb"><img src="images/interactiveSiteplanner.jpg" alt="Site Planner"><div class="node-plus-btn">+</div></div>
         <div class="node-card-body">
-          <span class="node-cat-tag" style="color:#651FFF;">INTERACTIVE SALES</span>
+          <span class="node-cat-tag">INTERACTIVE SALES</span>
           <div class="node-card-title">Interactive Site Plan</div>
         </div>
       </div>
 
-      <div class="node-card project-node" id="node-floor-planner" data-target-id="web-apps" data-color="#00B0FF" style="left: 1095px; top: 590px;">
+      <!-- Mid-Bottom Row -->
+      <div class="node-card project-node" id="node-bus-config" data-target-id="bus-configurator" style="left: 170px; top: 395px;">
+        <div class="node-thumb"><img src="images/BusConfigurator01.jpg" alt="Bus Configurator"><div class="node-plus-btn">+</div></div>
+        <div class="node-card-body">
+          <span class="node-cat-tag">AUTOMOTIVE RTX</span>
+          <div class="node-card-title">Bus Configurator</div>
+        </div>
+      </div>
+
+      <div class="node-card project-node" id="node-floor-planner" data-target-id="web-apps" style="left: 1110px; top: 395px;">
         <div class="node-thumb"><img src="images/interactivefloorplanner.png" alt="Floor Planner"><div class="node-plus-btn">+</div></div>
         <div class="node-card-body">
-          <span class="node-cat-tag" style="color:#00B0FF;">INTERACTIVE SALES</span>
+          <span class="node-cat-tag">INTERACTIVE SALES</span>
           <div class="node-card-title">Interactive Floor Plan</div>
         </div>
       </div>
 
-      <!-- Bottom Column Nodes -->
-      <div class="node-card project-node" id="node-furniture-config" data-target-id="furniture-configurator" data-color="#D500F9" style="left: 450px; top: 670px;">
+      <!-- Bottom Row -->
+      <div class="node-card project-node" id="node-agri-vr" data-target-id="agri-vr" style="left: 380px; top: 490px;">
+        <div class="node-thumb"><img src="images/ArchitecturalGame01.jpg" alt="Agri VR"><div class="node-plus-btn">+</div></div>
+        <div class="node-card-body">
+          <span class="node-cat-tag">EDUCATION VR</span>
+          <div class="node-card-title">Agri VR Simulation</div>
+        </div>
+      </div>
+
+      <div class="node-card project-node" id="node-furniture-config" data-target-id="furniture-configurator" style="left: 640px; top: 490px; transform: translateX(-50%);">
         <div class="node-thumb"><img src="images/interiorRendering01.jpeg" alt="Furniture Configurator"><div class="node-plus-btn">+</div></div>
         <div class="node-card-body">
-          <span class="node-cat-tag" style="color:#D500F9;">DATA ASSET WORKFLOW</span>
+          <span class="node-cat-tag">DATA ASSET WORKFLOW</span>
           <div class="node-card-title">Furniture Configurator</div>
         </div>
       </div>
 
-      <div class="node-card project-node" id="node-360-tour" data-target-id="web-apps" data-color="#FF9100" style="left: 760px; top: 670px;">
+      <div class="node-card project-node" id="node-360-tour" data-target-id="web-apps" style="left: 900px; top: 490px;">
         <div class="node-thumb"><img src="images/360VirtualTour.jpg" alt="360 Tour"><div class="node-plus-btn">+</div></div>
         <div class="node-card-body">
-          <span class="node-cat-tag" style="color:#FF9100;">IMMERSIVE EXPERIENCES</span>
+          <span class="node-cat-tag">IMMERSIVE EXPERIENCES</span>
           <div class="node-card-title">360° Virtual Tour</div>
         </div>
       </div>
@@ -2567,7 +2552,7 @@ function setFeaturedImages(){
   if (photo && ASSETS.profile) photo.src = ASSETS.profile;
 }
 
-// ==================== NODE CONNECTOR DRAW LOGIC (FUTURISTIC RADIAL WIRES) ====================
+// ==================== NODE CONNECTOR DRAW LOGIC (SPIDER-MAN WEB & YELLOW ENERGY FLOW) ====================
 function drawNodeConnectors() {
   const container = document.querySelector('.node-graph-inner');
   const hub = document.getElementById('hub-center');
@@ -2586,16 +2571,14 @@ function drawNodeConnectors() {
   let svgContent = '';
 
   projectNodes.forEach(node => {
-    const color = node.getAttribute('data-color') || '#4B6ABD';
     const nodeRect = node.getBoundingClientRect();
     const nodeX = (nodeRect.left + nodeRect.width / 2 - containerRect.left) / scale;
     const nodeY = (nodeRect.top + nodeRect.height / 2 - containerRect.top) / scale;
 
     const dx = nodeX - hubX;
     const dy = nodeY - hubY;
-    const dist = Math.hypot(dx, dy);
 
-    // Smooth curve control points calculation
+    // Smooth organic web Bezier curve
     const cx1 = hubX + (dx * 0.45);
     const cy1 = hubY + (dy * 0.25);
     const cx2 = nodeX - (dx * 0.25);
@@ -2603,10 +2586,10 @@ function drawNodeConnectors() {
 
     const d = `M ${hubX} ${hubY} C ${cx1} ${cy1}, ${cx2} ${cy2}, ${nodeX} ${nodeY}`;
 
-    // Base glowing wire
-    svgContent += `<path class="wire-path-bg" d="${d}" stroke="${color}" />`;
-    // Animated pulse wire
-    svgContent += `<path class="wire-path-pulse" d="${d}" stroke="${color}" />`;
+    // Spider-man White Web base path
+    svgContent += `<path class="wire-path-bg" d="${d}" />`;
+    // Light Yellow Energy flow pulse
+    svgContent += `<path class="wire-path-pulse" d="${d}" />`;
   });
 
   wiresGroup.innerHTML = svgContent;
