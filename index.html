@@ -1550,118 +1550,8 @@ footer{
   </div>
 </section>
 
-<!-- WORK INTRO -->
-<section class="work-section section-pad" id="work">
-  <div class="work-intro">
-    <div>
-      <div class="eyebrow">Selected work</div>
-      <h2 class="section-head">Things I've<br>built &amp; shipped</h2>
-    </div>
-    <p class="work-count">07 projects — spanning VR, PC, and web. Scroll to explore the details.</p>
-  </div>
-
-  <div class="node-graph-viewport">
-    <!-- Restore Layout Button -->
-    <button class="node-reset-btn" title="Reset Layout" onclick="resetNodePositions()">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" />
-        <path d="M16 3h5v5" />
-        <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" />
-        <path d="M8 21H3v-5" />
-      </svg>
-    </button>
-    <div class="node-graph-inner">
-      <!-- SVG Animated Wires -->
-      <svg class="node-graph-svg" id="nodeGraphSvg">
-        <g id="wiresGroup"></g>
-      </svg>
-      
-      <!-- CENTER HUB NODE (COMPACT 'WORK') -->
-      <div class="node-card center-hub" id="hub-center" style="left: 640px; top: 270px; transform: translate(-50%, -50%);">
-        <span class="hub-title">Work</span>
-      </div>
-
-      <!-- COLORFUL GLASSMOPHIC PROJECT NODES WITH MATCHING COLOR WIRES -->
-      <!-- Top Row -->
-      <div class="node-card project-node node-green" id="node-arch-viz" data-target-id="arch-viz" data-color="#00C853" style="left: 380px; top: 50px;">
-        <div class="node-glass-badge"><span class="badge-icon">+</span> MULTIPLAYER ARCH</div>
-        <div class="node-card-body">
-          <div class="node-card-title">Interior Viz</div>
-        </div>
-      </div>
-
-      <div class="node-card project-node node-cyan" id="node-interior-render" data-target-id="interior-rendering" data-color="#00B0FF" style="left: 640px; top: 50px; transform: translateX(-50%);">
-        <div class="node-glass-badge"><span class="badge-icon">+</span> UE5 PATH TRACING</div>
-        <div class="node-card-body">
-          <div class="node-card-title">Lighting Pipeline</div>
-        </div>
-      </div>
-
-      <div class="node-card project-node node-blue" id="node-3d-scan" data-target-id="web-apps" data-color="#2979FF" style="left: 900px; top: 50px;">
-        <div class="node-glass-badge"><span class="badge-icon">+</span> 3D GAUSSIAN SPLAT</div>
-        <div class="node-card-body">
-          <div class="node-card-title">3D Scanning Tour</div>
-        </div>
-      </div>
-
-      <!-- Mid-Top Row -->
-      <div class="node-card project-node node-pink" id="node-vr-medical" data-target-id="vr-medical" data-color="#FF2A85" style="left: 170px; top: 140px;">
-        <div class="node-glass-badge"><span class="badge-icon">+</span> HEALTHCARE VR</div>
-        <div class="node-card-body">
-          <div class="node-card-title">VR Medical App</div>
-        </div>
-      </div>
-
-      <div class="node-card project-node node-indigo" id="node-site-planner" data-target-id="web-apps" data-color="#651FFF" style="left: 1110px; top: 140px;">
-        <div class="node-glass-badge"><span class="badge-icon">+</span> INTERACTIVE SALES</div>
-        <div class="node-card-body">
-          <div class="node-card-title">Interactive Site Plan</div>
-        </div>
-      </div>
-
-      <!-- Mid-Bottom Row -->
-      <div class="node-card project-node node-purple" id="node-bus-config" data-target-id="bus-configurator" data-color="#A100FF" style="left: 170px; top: 380px;">
-        <div class="node-glass-badge"><span class="badge-icon">+</span> AUTOMOTIVE RTX</div>
-        <div class="node-card-body">
-          <div class="node-card-title">Bus Configurator</div>
-        </div>
-      </div>
-
-      <div class="node-card project-node node-sky" id="node-floor-planner" data-target-id="web-apps" data-color="#0284C7" style="left: 1110px; top: 380px;">
-        <div class="node-glass-badge"><span class="badge-icon">+</span> INTERACTIVE SALES</div>
-        <div class="node-card-body">
-          <div class="node-card-title">Interactive Floor Plan</div>
-        </div>
-      </div>
-
-      <!-- Bottom Row -->
-      <div class="node-card project-node node-orange" id="node-agri-vr" data-target-id="agri-vr" data-color="#FF5202" style="left: 380px; top: 470px;">
-        <div class="node-glass-badge"><span class="badge-icon">+</span> EDUCATION VR</div>
-        <div class="node-card-body">
-          <div class="node-card-title">Agri VR Simulation</div>
-        </div>
-      </div>
-
-      <div class="node-card project-node node-magenta" id="node-furniture-config" data-target-id="furniture-configurator" data-color="#D500F9" style="left: 640px; top: 470px; transform: translateX(-50%);">
-        <div class="node-glass-badge"><span class="badge-icon">+</span> DATA ASSET WORKFLOW</div>
-        <div class="node-card-body">
-          <div class="node-card-title">Furniture Configurator</div>
-        </div>
-      </div>
-
-      <div class="node-card project-node node-amber" id="node-360-tour" data-target-id="web-apps" data-color="#FF9100" style="left: 900px; top: 470px;">
-        <div class="node-glass-badge"><span class="badge-icon">+</span> IMMERSIVE EXPERIENCES</div>
-        <div class="node-card-body">
-          <div class="node-card-title">360° Virtual Tour</div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
 <!-- FEATURED: VR MEDICAL EDUCATION APP -->
-<section class="featured light-theme section-pad">
+<section class="featured light-theme section-pad" id="work">
   <div class="eyebrow">VR App / Healthcare</div>
   <div class="featured-grid">
     <div>
@@ -1791,7 +1681,7 @@ footer{
 </section>
 
 <!-- FEATURED: INTERIOR RENDERING & LIGHTING -->
-<section class="featured light-theme section-pad">
+<section class="featured light-theme section-pad" id="work">
   <div class="eyebrow">Visualization Pipeline / UE5</div>
   <div class="featured-grid">
     <div>
