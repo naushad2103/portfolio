@@ -2621,7 +2621,7 @@ function drawNodeConnectors() {
     svgContent += `<path class="wire-path-side" d="${dRight}" />`;
     svgContent += `<path class="wire-path-bg" d="${dCenter}" />`;
 
-    # 4. Spider Web Cross-Filaments (Web Ribs) connecting strands at intervals
+    // 4. Spider Web Cross-Filaments (Web Ribs) connecting strands at intervals
     const tSteps = [0.2, 0.38, 0.56, 0.74, 0.88];
     tSteps.forEach(t => {
       const bx = getBezierPoint(t, hubX, cx1, cx2, nodeX);
