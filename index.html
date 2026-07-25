@@ -1340,25 +1340,31 @@ footer{
   to { stroke-dashoffset: 0px; }
 }
 
-/* Dark Glass Cards & Matching Wire Glows */
+/* Authentic Frosted Glassmorphism with Specular Rim & Glowing Auras */
 .node-card.project-node {
   width: 185px;
-  background: rgba(15, 23, 42, 0.88);
-  backdrop-filter: blur(14px) saturate(180%);
-  -webkit-backdrop-filter: blur(14px) saturate(180%);
-  border: 1.5px solid var(--card-accent, #4B6ABD);
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), 0 0 16px var(--card-glow, rgba(75, 106, 189, 0.2));
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(16px) saturate(200%);
+  -webkit-backdrop-filter: blur(16px) saturate(200%);
+  border: 1.5px solid rgba(255, 255, 255, 0.75);
+  border-radius: 14px;
+  box-shadow: 
+    inset 0 1px 1px rgba(255, 255, 255, 0.9),
+    0 10px 25px rgba(22, 20, 15, 0.08),
+    0 0 18px var(--card-glow, rgba(75, 106, 189, 0.2));
   transition: all 0.3s var(--ease);
   overflow: hidden;
 }
 .node-card.project-node:hover {
   border-color: var(--card-accent, #4B6ABD);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 25px var(--card-glow, rgba(75, 106, 189, 0.45));
+  box-shadow: 
+    inset 0 1px 1px rgba(255, 255, 255, 1),
+    0 14px 32px rgba(22, 20, 15, 0.12),
+    0 0 25px var(--card-glow, rgba(75, 106, 189, 0.4));
   transform: translateY(-3px) scale(1.02);
 }
 .node-glass-badge {
-  padding: 5px 10px;
+  padding: 6px 10px;
   background: var(--card-accent, #4B6ABD);
   color: #ffffff;
   font-family: 'JetBrains Mono', monospace;
@@ -1369,11 +1375,12 @@ footer{
   display: flex;
   align-items: center;
   gap: 6px;
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.1);
 }
 .badge-icon {
   width: 14px;
   height: 14px;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.22);
   border-radius: 50%;
   display: inline-flex;
   align-items: center;
@@ -1389,8 +1396,8 @@ footer{
 .node-card-title {
   font-family: 'Space Grotesk', sans-serif;
   font-size: 12.5px;
-  font-weight: 700;
-  color: #ffffff;
+  font-weight: 800;
+  color: #16140F;
   line-height: 1.3;
 }
 
