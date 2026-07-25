@@ -2541,7 +2541,7 @@ function setFeaturedImages(){
   if (photo && ASSETS.profile) photo.src = ASSETS.profile;
 }
 
-// ==================== NODE CONNECTOR DRAW LOGIC (AUTHENTIC ORGANIC SPIDER-MAN WEB BUNDLE) ====================
+// ==================== NODE CONNECTOR DRAW LOGIC (3-STRAND FANNING RIBBON WIRES) ====================
 function drawNodeConnectors() {
   const container = document.querySelector('.node-graph-inner');
   const hub = document.getElementById('hub-center');
@@ -2559,11 +2559,6 @@ function drawNodeConnectors() {
   
   let svgContent = '';
 
-  function getBezierPoint(t, p0, p1, p2, p3) {
-    const u = 1 - t;
-    return (u * u * u * p0) + (3 * u * u * t * p1) + (3 * u * t * t * p2) + (t * t * t * p3);
-  }
-
   projectNodes.forEach(node => {
     const nodeRect = node.getBoundingClientRect();
     const nodeX = (nodeRect.left + nodeRect.width / 2 - containerRect.left) / scale;
@@ -2574,82 +2569,39 @@ function drawNodeConnectors() {
     const dist = Math.hypot(dx, dy);
     if (dist === 0) return;
 
-    // Unit & Normal vectors
-    const ux = dx / dist;
-    const uy = dy / dist;
-    const nx = -uy;
-    const ny = ux;
+    // Normal vector for perpendicular offset
+    const nx = -dy / dist;
+    const ny = dx / dist;
 
-    // Bezier control points
+    // Base control points
     const cx1 = hubX + (dx * 0.45);
     const cy1 = hubY + (dy * 0.25);
     const cx2 = nodeX - (dx * 0.25);
     const cy2 = nodeY - (dy * 0.45);
 
-    const dCenter = `M ${hubX} ${hubY} C ${cx1} ${cy1}, ${cx2} ${cy2}, ${nodeX} ${nodeY}`;
+    // 1. Main Center Strand
+    const dMain = `M ${hubX} ${hubY} C ${cx1} ${cy1}, ${cx2} ${cy2}, ${nodeX} ${nodeY}`;
 
-    // 1. Web Anchor Claws / Flared Tendons at Hub End
-    for (let a = -10; a <= 10; a += 5) {
-      if (a === 0) continue;
-      const ax = hubX + nx * a;
-      const ay = hubY + ny * a;
-      const midX = hubX + ux * 22 + nx * (a * 0.35);
-      const midY = hubY + uy * 22 + ny * (a * 0.35);
-      svgContent += `<path class="wire-path-tendon" d="M ${ax} ${ay} Q ${midX} ${midY}, ${hubX + ux * 45} ${hubY + uy * 45}" />`;
-    }
+    // 2. Sub-strand 1 (Fans out left then right)
+    const bowAmt = 15;
+    const cx1_L = cx1 + nx * bowAmt;
+    const cy1_L = cy1 + ny * bowAmt;
+    const cx2_L = cx2 - nx * bowAmt;
+    const cy2_L = cy2 - ny * bowAmt;
+    const dStrand1 = `M ${hubX} ${hubY} C ${cx1_L} ${cy1_L}, ${cx2_L} ${cy2_L}, ${nodeX} ${nodeY}`;
 
-    // 2. Web Anchor Claws / Flared Tendons at Node End
-    for (let a = -10; a <= 10; a += 5) {
-      if (a === 0) continue;
-      const ax = nodeX + nx * a;
-      const ay = nodeY + ny * a;
-      const midX = nodeX - ux * 22 + nx * (a * 0.35);
-      const midY = nodeY - uy * 22 + ny * (a * 0.35);
-      svgContent += `<path class="wire-path-tendon" d="M ${ax} ${ay} Q ${midX} ${midY}, ${nodeX - ux * 45} ${nodeY - uy * 45}" />`;
-    }
+    // 3. Sub-strand 2 (Fans out right then left)
+    const cx1_R = cx1 - nx * bowAmt;
+    const cy1_R = cy1 - ny * bowAmt;
+    const cx2_R = cx2 + nx * bowAmt;
+    const cy2_R = cy2 + ny * bowAmt;
+    const dStrand2 = `M ${hubX} ${hubY} C ${cx1_R} ${cy1_R}, ${cx2_R} ${cy2_R}, ${nodeX} ${nodeY}`;
 
-    // 3. Side Parallel Strands
-    const offL = 4.5;
-    const dLeft = `M ${hubX + nx * (offL * 0.3)} ${hubY + ny * (offL * 0.3)} C ${cx1 + nx * offL} ${cy1 + ny * offL}, ${cx2 + nx * offL} ${cy2 + ny * offL}, ${nodeX + nx * (offL * 0.3)} ${nodeY + ny * (offL * 0.3)}`;
-    const dRight = `M ${hubX - nx * (offL * 0.3)} ${hubY - ny * (offL * 0.3)} C ${cx1 - nx * offL} ${cy1 - ny * offL}, ${cx2 - nx * offL} ${cy2 - ny * offL}, ${nodeX - nx * (offL * 0.3)} ${nodeY - ny * (offL * 0.3)}`;
-
-    svgContent += `<path class="wire-path-side" d="${dLeft}" />`;
-    svgContent += `<path class="wire-path-side" d="${dRight}" />`;
-
-    // 4. Helical Spiral Wrap Strand around center core
-    let spiralPath = '';
-    const numSteps = 32;
-    for (let i = 0; i <= numSteps; i++) {
-      const t = i / numSteps;
-      const bx = getBezierPoint(t, hubX, cx1, cx2, nodeX);
-      const by = getBezierPoint(t, hubY, cy1, cy2, nodeY);
-      const spiralOff = Math.sin(t * Math.PI * 10) * 5.5;
-      const sx = bx + nx * spiralOff;
-      const sy = by + ny * spiralOff;
-      if (i === 0) spiralPath += `M ${sx} ${sy}`;
-      else spiralPath += ` L ${sx} ${sy}`;
-    }
-    svgContent += `<path class="wire-path-spiral" d="${spiralPath}" />`;
-
-    // 5. Main Center Core Web Strand
-    svgContent += `<path class="wire-path-bg" d="${dCenter}" />`;
-
-    // 6. Web Knots / Sticky Droplets + Cross-Filaments
-    const tRibs = [0.2, 0.36, 0.52, 0.68, 0.84];
-    tRibs.forEach(t => {
-      const bx = getBezierPoint(t, hubX, cx1, cx2, nodeX);
-      const by = getBezierPoint(t, hubY, cy1, cy2, nodeY);
-      const lx = bx + nx * 5.5;
-      const ly = by + ny * 5.5;
-      const rx = bx - nx * 5.5;
-      const ry = by - ny * 5.5;
-
-      svgContent += `<line class="wire-cross-rib" x1="${lx}" y1="${ly}" x2="${rx}" y2="${ry}" />`;
-      svgContent += `<circle class="wire-knot" cx="${bx}" cy="${by}" r="2.2" />`;
-    });
-
-    // 7. Light Yellow Energy Flow Pulse
-    svgContent += `<path class="wire-path-pulse" d="${dCenter}" />`;
+    // Render 3 strands with explicit fill="none" to prevent black fills
+    svgContent += `<path fill="none" stroke="rgba(75, 106, 189, 0.45)" stroke-width="1.2" d="${dStrand1}" />`;
+    svgContent += `<path fill="none" stroke="rgba(75, 106, 189, 0.45)" stroke-width="1.2" d="${dStrand2}" />`;
+    svgContent += `<path fill="none" stroke="#16140F" stroke-width="1.8" opacity="0.85" d="${dMain}" />`;
+    svgContent += `<path fill="none" class="wire-path-pulse" d="${dMain}" />`;
   });
 
   wiresGroup.innerHTML = svgContent;
