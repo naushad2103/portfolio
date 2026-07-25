@@ -1341,6 +1341,23 @@ footer{
 }
 
 /* Authentic Frosted Glassmorphism with Specular Rim & Glowing Auras */
+/* Tree Parent Nodes Styling */
+.node-card.tree-parent-node {
+  width: 190px;
+  background: rgba(15, 23, 42, 0.92);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 2px solid var(--card-accent, #00C853);
+  border-radius: 12px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.4), 0 0 22px var(--card-glow, rgba(0, 200, 83, 0.3));
+  transition: all 0.3s var(--ease);
+  overflow: hidden;
+  z-index: 12;
+}
+.node-card.tree-parent-node:hover {
+  transform: translateX(-50%) translateY(-3px) scale(1.03) !important;
+}
+
 .node-card.project-node {
   width: 185px;
   background: rgba(255, 255, 255, 0.45);
@@ -2579,7 +2596,7 @@ function setFeaturedImages(){
   if (photo && ASSETS.profile) photo.src = ASSETS.profile;
 }
 
-// ==================== NODE CONNECTOR DRAW LOGIC (MATCHING COLOR FANNING WIRES & SOCKET DOTS) ====================
+// ==================== NODE CONNECTOR DRAW LOGIC (TWO-TREE HIERARCHY WIRES) ====================
 function drawNodeConnectors() {
   const container = document.querySelector('.node-graph-inner');
   const hub = document.getElementById('hub-center');
@@ -2593,57 +2610,79 @@ function drawNodeConnectors() {
   const hubX = (hubRect.left + hubRect.width / 2 - containerRect.left) / scale;
   const hubY = (hubRect.top + hubRect.height / 2 - containerRect.top) / scale;
 
-  const projectNodes = document.querySelectorAll('.node-card.project-node');
-  
   let svgContent = '';
 
-  projectNodes.forEach(node => {
-    const color = node.getAttribute('data-color') || '#4B6ABD';
-    const nodeRect = node.getBoundingClientRect();
-    const nodeX = (nodeRect.left + nodeRect.width / 2 - containerRect.left) / scale;
-    const nodeY = (nodeRect.top + nodeRect.height / 2 - containerRect.top) / scale;
-
-    const dx = nodeX - hubX;
-    const dy = nodeY - hubY;
+  function drawTreeRibbon(parentX, parentY, childX, childY, color) {
+    const dx = childX - parentX;
+    const dy = childY - parentY;
     const dist = Math.hypot(dx, dy);
     if (dist === 0) return;
 
-    // Normal vector for perpendicular offset
     const nx = -dy / dist;
     const ny = dx / dist;
 
-    // Base control points
-    const cx1 = hubX + (dx * 0.45);
-    const cy1 = hubY + (dy * 0.25);
-    const cx2 = nodeX - (dx * 0.25);
-    const cy2 = nodeY - (dy * 0.45);
+    const cx1 = parentX + (dx * 0.45);
+    const cy1 = parentY + (dy * 0.25);
+    const cx2 = childX - (dx * 0.25);
+    const cy2 = childY - (dy * 0.45);
 
-    // 1. Main Center Strand
-    const dMain = `M ${hubX} ${hubY} C ${cx1} ${cy1}, ${cx2} ${cy2}, ${nodeX} ${nodeY}`;
+    const dMain = `M ${parentX} ${parentY} C ${cx1} ${cy1}, ${cx2} ${cy2}, ${childX} ${childY}`;
 
-    // 2. Sub-strand 1 (Fans out left then right)
-    const bowAmt = 14;
+    const bowAmt = 13;
     const cx1_L = cx1 + nx * bowAmt;
     const cy1_L = cy1 + ny * bowAmt;
     const cx2_L = cx2 - nx * bowAmt;
     const cy2_L = cy2 - ny * bowAmt;
-    const dStrand1 = `M ${hubX} ${hubY} C ${cx1_L} ${cy1_L}, ${cx2_L} ${cy2_L}, ${nodeX} ${nodeY}`;
+    const dStrand1 = `M ${parentX} ${parentY} C ${cx1_L} ${cy1_L}, ${cx2_L} ${cy2_L}, ${childX} ${childY}`;
 
-    // 3. Sub-strand 2 (Fans out right then left)
     const cx1_R = cx1 - nx * bowAmt;
     const cy1_R = cy1 - ny * bowAmt;
     const cx2_R = cx2 + nx * bowAmt;
     const cy2_R = cy2 + ny * bowAmt;
-    const dStrand2 = `M ${hubX} ${hubY} C ${cx1_R} ${cy1_R}, ${cx2_R} ${cy2_R}, ${nodeX} ${nodeY}`;
+    const dStrand2 = `M ${parentX} ${parentY} C ${cx1_R} ${cy1_R}, ${cx2_R} ${cy2_R}, ${childX} ${childY}`;
 
-    // Render 3 strands matching node color
     svgContent += `<path fill="none" class="wire-strand-sub" stroke="${color}" d="${dStrand1}" />`;
     svgContent += `<path fill="none" class="wire-strand-sub" stroke="${color}" d="${dStrand2}" />`;
     svgContent += `<path fill="none" class="wire-path-bg" stroke="${color}" d="${dMain}" />`;
     svgContent += `<path fill="none" class="wire-path-pulse" stroke="${color}" filter="drop-shadow(0 0 6px ${color})" d="${dMain}" />`;
+    svgContent += `<circle cx="${childX}" cy="${childY}" r="3.5" fill="${color}" filter="drop-shadow(0 0 6px ${color})" />`;
+  }
 
-    // Glowing Socket Dot at Node Edge
-    svgContent += `<circle cx="${nodeX}" cy="${nodeY}" r="3.5" fill="${color}" filter="drop-shadow(0 0 6px ${color})" />`;
+  // A. Draw Root -> Tree 1 (Unreal Engine) & Tree 2 (Web Applications) Main Trunk Wires
+  const treeUE = document.getElementById('tree-ue');
+  const treeWeb = document.getElementById('tree-web');
+
+  if (treeUE) {
+    const ueRect = treeUE.getBoundingClientRect();
+    const ueX = (ueRect.left + ueRect.width / 2 - containerRect.left) / scale;
+    const ueY = (ueRect.top + ueRect.height / 2 - containerRect.top) / scale;
+    drawTreeRibbon(hubX, hubY, ueX, ueY, '#00C853');
+  }
+
+  if (treeWeb) {
+    const webRect = treeWeb.getBoundingClientRect();
+    const webX = (webRect.left + webRect.width / 2 - containerRect.left) / scale;
+    const webY = (webRect.top + webRect.height / 2 - containerRect.top) / scale;
+    drawTreeRibbon(hubX, hubY, webX, webY, '#2979FF');
+  }
+
+  // B. Draw Parent Tree -> Child Project Wires
+  const projectNodes = document.querySelectorAll('.node-card.project-node');
+  projectNodes.forEach(node => {
+    const parentId = node.getAttribute('data-parent-id');
+    const parentEl = parentId ? document.getElementById(parentId) : null;
+    if (!parentEl) return;
+
+    const pRect = parentEl.getBoundingClientRect();
+    const px = (pRect.left + pRect.width / 2 - containerRect.left) / scale;
+    const py = (pRect.top + pRect.height / 2 - containerRect.top) / scale;
+
+    const cRect = node.getBoundingClientRect();
+    const cx = (cRect.left + cRect.width / 2 - containerRect.left) / scale;
+    const cy = (cRect.top + cRect.height / 2 - containerRect.top) / scale;
+
+    const color = node.getAttribute('data-color') || '#4B6ABD';
+    drawTreeRibbon(px, py, cx, cy, color);
   });
 
   wiresGroup.innerHTML = svgContent;
