@@ -13,10 +13,10 @@
   --bg-warm: rgba(243, 241, 236, 0.82);
   --ink: #16140F;
   --ink-soft: #4A463E;
-  --blue: #0066FF;
-  --blue-deep: #0052CC;
-  --orange: #0066FF;
-  --orange-deep: #0052CC;
+  --blue: #4B6ABD;
+  --blue-deep: #3D579B;
+  --orange: #4B6ABD;
+  --orange-deep: #3D579B;
   --dark: #15130F;
   --line: rgba(22,20,15,0.12);
   --line-strong: rgba(22,20,15,0.22);
@@ -956,7 +956,7 @@ section{ position:relative; }
   font-size:clamp(14px,2.2vw,18px);
   text-decoration:none;
   color:#fff;
-  background:#0066FF; /* Blue background */
+  background:#4B6ABD; /* Blue background */
   padding:12px 24px;
   border-radius:4px;
   font-weight:700;
@@ -966,7 +966,7 @@ section{ position:relative; }
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 .contact-email:hover{
-  background:#0052CC;
+  background:#3D579B;
   transform:translateY(-2px);
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
@@ -2004,7 +2004,7 @@ const PROJECTS = [
     name: 'VR Medical Education App',
     tags: 'Oculus Quest — Multiplayer — Voice Chat',
     img: null, // uses gradient frame, no asset available
-    accent: '#0066FF',
+    accent: '#4B6ABD',
     eyebrow: 'Healthcare / VR',
     description: 'A multiplayer demo application developed for the Oculus Quest, designed specifically for medical professionals — complete with built-in voice chat and full Blueprint-driven interactivity.',
     features: [
@@ -2019,7 +2019,7 @@ const PROJECTS = [
     name: 'Bus Configurator',
     tags: 'PC — Ray Tracing (RTX) — Drive Simulation',
     img: 'bus',
-    accent: '#0066FF',
+    accent: '#4B6ABD',
     eyebrow: 'Automotive / Real-Time Viz',
     description: 'A PC-based bus configuration and driving simulator built in Unreal Engine, featuring advanced ray tracing for high-fidelity visuals across a range of hardware.',
     features: [
@@ -2034,7 +2034,7 @@ const PROJECTS = [
     name: 'Agricultural VR Simulation',
     tags: 'PC & VR — Gamified Learning',
     img: 'farming',
-    accent: '#0066FF',
+    accent: '#4B6ABD',
     eyebrow: 'Education / VR',
     description: 'An educational VR farming simulation built for agricultural students, blending hands-on tasks with a points-based learning system across three progressive stages.',
     features: [
@@ -2049,7 +2049,7 @@ const PROJECTS = [
     name: 'Architectural Interior Viz',
     tags: 'PC & VR — Multiplayer — Material Swap',
     img: 'interior_living',
-    accent: '#0066FF',
+    accent: '#4B6ABD',
     eyebrow: 'Architecture / Multiplayer',
     description: 'A real-time interior visualization tool with full multiplayer support, letting clients and teams walk a space together and explore finishes live.',
     features: [
@@ -2064,7 +2064,7 @@ const PROJECTS = [
     name: 'Interior Rendering & Lighting',
     tags: 'UE5 — Path Tracing / Lumen — Datasmith',
     img: null,
-    accent: '#0066FF',
+    accent: '#4B6ABD',
     eyebrow: 'Visualization Pipeline',
     description: 'A high-fidelity rendering pipeline built in Unreal Engine 5. Architectural models come in via Datasmith; everything after — lighting, materials, cameras, final renders — is built out from there.',
     features: [
@@ -2079,7 +2079,7 @@ const PROJECTS = [
     name: 'Web Applications',
     tags: 'KRPANO — 3D Vista — AI-Assisted JS',
     img: null,
-    accent: '#0066FF',
+    accent: '#4B6ABD',
     eyebrow: 'Web / 360°',
     description: 'A set of lightweight, AI-assisted web tools that bring real-time and panoramic content to clients without any plugin or download required.',
     features: [
@@ -2802,7 +2802,7 @@ function initFlowingDots() {
         };
         
         if (splitAmount > 0.5) {
-            drawChannel(`rgba(0, 102, 255, ${alpha * 0.7})`, -splitAmount, 0); // Orange
+            drawChannel(`rgba(75, 106, 189, ${alpha * 0.7})`, -splitAmount, 0); // Orange
             drawChannel(`rgba(74, 70, 62, ${alpha * 0.7})`, splitAmount, splitAmount); // Soft grey-brown
         }
         drawChannel(`rgba(22, 20, 15, ${alpha})`, 0, 0); // Ink charcoal
@@ -2882,7 +2882,7 @@ function initHeroRing() {
       );
       glassGrad.addColorStop(0, 'rgba(255, 255, 255, 0.18)'); // glare center
       glassGrad.addColorStop(0.5, 'rgba(255, 255, 255, 0.03)'); // base transparency
-      glassGrad.addColorStop(1, 'rgba(0, 102, 255, 0.08)'); // orange rim refraction
+      glassGrad.addColorStop(1, 'rgba(75, 106, 189, 0.08)'); // orange rim refraction
       ctx.fillStyle = glassGrad;
       ctx.fill();
     }
@@ -2890,7 +2890,7 @@ function initHeroRing() {
     ctx.strokeStyle = color;
     ctx.lineWidth = lineWidth;
     if (blur > 0) {
-      ctx.shadowColor = 'rgba(0, 102, 255, 0.82)';
+      ctx.shadowColor = 'rgba(75, 106, 189, 0.82)';
       ctx.shadowBlur = blur;
     }
     ctx.stroke();
@@ -2923,7 +2923,7 @@ function initHeroRing() {
     
     // Draw wobbly concentric layers
     // Layer 1: Outer secondary orange sweep
-    drawWobblyLoop(mouse.x, mouse.y, baseRadius * 1.15, 0.18, 'rgba(0, 102, 255, 0.35)', 1.5, time * 0.8, 4, 0, false);
+    drawWobblyLoop(mouse.x, mouse.y, baseRadius * 1.15, 0.18, 'rgba(75, 106, 189, 0.35)', 1.5, time * 0.8, 4, 0, false);
     // Layer 2: Main glowing ring and glass overlay fill
     drawWobblyLoop(mouse.x, mouse.y, baseRadius, 0.5, 'rgba(255, 255, 255, 0.95)', 7, time, 6, 26, true);
     // Layer 3: Opaque core
@@ -2954,7 +2954,7 @@ function initHeroRing() {
         particles.splice(i, 1);
         continue;
       }
-      ctx.fillStyle = `rgba(0, 102, 255, ${p.life * 0.8})`;
+      ctx.fillStyle = `rgba(75, 106, 189, ${p.life * 0.8})`;
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
       ctx.fill();
