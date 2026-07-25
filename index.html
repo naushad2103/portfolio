@@ -1342,33 +1342,49 @@ footer{
   to { stroke-dashoffset: 0px; }
 }
 
-/* Outer Project Radial Cards (No Thumbnails) */
+/* Colorful Glassmorphic Project Nodes */
 .node-card.project-node {
-  width: 175px;
-  overflow: hidden;
-  background: var(--paper);
-  border: 1px solid var(--line-strong);
-  border-radius: 10px;
-  box-shadow: 0 6px 18px rgba(22, 20, 15, 0.06);
+  width: 185px;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(14px) saturate(180%);
+  -webkit-backdrop-filter: blur(14px) saturate(180%);
+  border: 1.5px solid var(--card-accent, #4B6ABD);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(22, 20, 15, 0.06), 0 0 16px var(--card-glow, rgba(75, 106, 189, 0.15));
   transition: all 0.3s var(--ease);
+  overflow: hidden;
 }
 .node-card.project-node:hover {
-  border-color: var(--blue);
-  box-shadow: 0 10px 24px rgba(75, 106, 189, 0.22);
-  transform: translateY(-2px);
+  border-color: var(--card-accent, #4B6ABD);
+  box-shadow: 0 12px 30px rgba(22, 20, 15, 0.12), 0 0 25px var(--card-glow, rgba(75, 106, 189, 0.35));
+  transform: translateY(-3px) scale(1.02);
+}
+.node-glass-badge {
+  padding: 5px 10px;
+  background: var(--card-accent, #4B6ABD);
+  color: #ffffff;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8.5px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.badge-icon {
+  width: 14px;
+  height: 14px;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 900;
 }
 .node-card-body {
-  padding: 12px 14px;
-}
-.node-cat-tag {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 8px;
-  font-weight: 800;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--blue);
-  margin-bottom: 4px;
-  display: block;
+  padding: 10px 12px 12px;
 }
 .node-card-title {
   font-family: 'Space Grotesk', sans-serif;
@@ -1377,6 +1393,18 @@ footer{
   color: var(--ink);
   line-height: 1.3;
 }
+
+/* Category Color Variants */
+.node-green { --card-accent: #00C853; --card-glow: rgba(0, 200, 83, 0.25); }
+.node-cyan { --card-accent: #00B0FF; --card-glow: rgba(0, 176, 255, 0.25); }
+.node-blue { --card-accent: #2979FF; --card-glow: rgba(41, 121, 255, 0.25); }
+.node-pink { --card-accent: #FF2A85; --card-glow: rgba(255, 42, 133, 0.25); }
+.node-indigo { --card-accent: #651FFF; --card-glow: rgba(101, 31, 255, 0.25); }
+.node-purple { --card-accent: #A100FF; --card-glow: rgba(161, 0, 255, 0.25); }
+.node-sky { --card-accent: #0284C7; --card-glow: rgba(2, 132, 199, 0.25); }
+.node-orange { --card-accent: #FF5202; --card-glow: rgba(255, 82, 2, 0.25); }
+.node-magenta { --card-accent: #D500F9; --card-glow: rgba(213, 0, 249, 0.25); }
+.node-amber { --card-accent: #FF9100; --card-glow: rgba(255, 145, 0, 0.25); }
 .node-path.left {
   stroke: var(--ink);
 }
@@ -1529,77 +1557,77 @@ footer{
         <span class="hub-title">Work</span>
       </div>
 
-      <!-- RADIAL PROJECT NODES (NO THUMBNAILS) -->
+      <!-- COLORFUL GLASSMOPHIC PROJECT NODES -->
       <!-- Top Row -->
-      <div class="node-card project-node" id="node-arch-viz" data-target-id="arch-viz" style="left: 380px; top: 50px;">
+      <div class="node-card project-node node-green" id="node-arch-viz" data-target-id="arch-viz" style="left: 380px; top: 50px;">
+        <div class="node-glass-badge"><span class="badge-icon">+</span> MULTIPLAYER ARCH</div>
         <div class="node-card-body">
-          <span class="node-cat-tag">MULTIPLAYER ARCH</span>
           <div class="node-card-title">Interior Viz</div>
         </div>
       </div>
 
-      <div class="node-card project-node" id="node-interior-render" data-target-id="interior-rendering" style="left: 640px; top: 50px; transform: translateX(-50%);">
+      <div class="node-card project-node node-cyan" id="node-interior-render" data-target-id="interior-rendering" style="left: 640px; top: 50px; transform: translateX(-50%);">
+        <div class="node-glass-badge"><span class="badge-icon">+</span> UE5 PATH TRACING</div>
         <div class="node-card-body">
-          <span class="node-cat-tag">UE5 PATH TRACING</span>
           <div class="node-card-title">Lighting Pipeline</div>
         </div>
       </div>
 
-      <div class="node-card project-node" id="node-3d-scan" data-target-id="web-apps" style="left: 900px; top: 50px;">
+      <div class="node-card project-node node-blue" id="node-3d-scan" data-target-id="web-apps" style="left: 900px; top: 50px;">
+        <div class="node-glass-badge"><span class="badge-icon">+</span> 3D GAUSSIAN SPLAT</div>
         <div class="node-card-body">
-          <span class="node-cat-tag">3D GAUSSIAN SPLAT</span>
           <div class="node-card-title">3D Scanning Tour</div>
         </div>
       </div>
 
       <!-- Mid-Top Row -->
-      <div class="node-card project-node" id="node-vr-medical" data-target-id="vr-medical" style="left: 170px; top: 140px;">
+      <div class="node-card project-node node-pink" id="node-vr-medical" data-target-id="vr-medical" style="left: 170px; top: 140px;">
+        <div class="node-glass-badge"><span class="badge-icon">+</span> HEALTHCARE VR</div>
         <div class="node-card-body">
-          <span class="node-cat-tag">HEALTHCARE VR</span>
           <div class="node-card-title">VR Medical App</div>
         </div>
       </div>
 
-      <div class="node-card project-node" id="node-site-planner" data-target-id="web-apps" style="left: 1110px; top: 140px;">
+      <div class="node-card project-node node-indigo" id="node-site-planner" data-target-id="web-apps" style="left: 1110px; top: 140px;">
+        <div class="node-glass-badge"><span class="badge-icon">+</span> INTERACTIVE SALES</div>
         <div class="node-card-body">
-          <span class="node-cat-tag">INTERACTIVE SALES</span>
           <div class="node-card-title">Interactive Site Plan</div>
         </div>
       </div>
 
       <!-- Mid-Bottom Row -->
-      <div class="node-card project-node" id="node-bus-config" data-target-id="bus-configurator" style="left: 170px; top: 380px;">
+      <div class="node-card project-node node-purple" id="node-bus-config" data-target-id="bus-configurator" style="left: 170px; top: 380px;">
+        <div class="node-glass-badge"><span class="badge-icon">+</span> AUTOMOTIVE RTX</div>
         <div class="node-card-body">
-          <span class="node-cat-tag">AUTOMOTIVE RTX</span>
           <div class="node-card-title">Bus Configurator</div>
         </div>
       </div>
 
-      <div class="node-card project-node" id="node-floor-planner" data-target-id="web-apps" style="left: 1110px; top: 380px;">
+      <div class="node-card project-node node-sky" id="node-floor-planner" data-target-id="web-apps" style="left: 1110px; top: 380px;">
+        <div class="node-glass-badge"><span class="badge-icon">+</span> INTERACTIVE SALES</div>
         <div class="node-card-body">
-          <span class="node-cat-tag">INTERACTIVE SALES</span>
           <div class="node-card-title">Interactive Floor Plan</div>
         </div>
       </div>
 
       <!-- Bottom Row -->
-      <div class="node-card project-node" id="node-agri-vr" data-target-id="agri-vr" style="left: 380px; top: 470px;">
+      <div class="node-card project-node node-orange" id="node-agri-vr" data-target-id="agri-vr" style="left: 380px; top: 470px;">
+        <div class="node-glass-badge"><span class="badge-icon">+</span> EDUCATION VR</div>
         <div class="node-card-body">
-          <span class="node-cat-tag">EDUCATION VR</span>
           <div class="node-card-title">Agri VR Simulation</div>
         </div>
       </div>
 
-      <div class="node-card project-node" id="node-furniture-config" data-target-id="furniture-configurator" style="left: 640px; top: 470px; transform: translateX(-50%);">
+      <div class="node-card project-node node-magenta" id="node-furniture-config" data-target-id="furniture-configurator" style="left: 640px; top: 470px; transform: translateX(-50%);">
+        <div class="node-glass-badge"><span class="badge-icon">+</span> DATA ASSET WORKFLOW</div>
         <div class="node-card-body">
-          <span class="node-cat-tag">DATA ASSET WORKFLOW</span>
           <div class="node-card-title">Furniture Configurator</div>
         </div>
       </div>
 
-      <div class="node-card project-node" id="node-360-tour" data-target-id="web-apps" style="left: 900px; top: 470px;">
+      <div class="node-card project-node node-amber" id="node-360-tour" data-target-id="web-apps" style="left: 900px; top: 470px;">
+        <div class="node-glass-badge"><span class="badge-icon">+</span> IMMERSIVE EXPERIENCES</div>
         <div class="node-card-body">
-          <span class="node-cat-tag">IMMERSIVE EXPERIENCES</span>
           <div class="node-card-title">360° Virtual Tour</div>
         </div>
       </div>
