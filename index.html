@@ -844,9 +844,31 @@ section{ position:relative; }
   border:1px solid var(--line-strong);
 }
 .tool-card{
-  background:var(--bg-warm);
   padding:40px 32px;
   position:relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.tools-grid {
+  background: #D8D6D0;
+}
+.tool-card:nth-child(1) {
+  background: #F7EBEA; /* Desaturated Red / Rose */
+}
+.tool-card:nth-child(2) {
+  background: #EAF2EC; /* Desaturated Green / Sage */
+}
+.tool-card:nth-child(3) {
+  background: #EBF1F7; /* Desaturated Blue / Sky Slate */
+}
+.tool-card:nth-child(4) {
+  background: #F9F5E8; /* Desaturated Yellow / Warm Sand */
+}
+.tool-card:nth-child(5) {
+  background: #F4EBF7; /* Desaturated Violet / Soft Lavender */
+}
+.tool-card.tool-empty {
+  background: #E2E1DC; /* Desaturated Neutral 6th Tile */
+  min-height: 100%;
 }
 .tool-num{
   font-family:'JetBrains Mono','SF Mono',Consolas,monospace;
@@ -1882,6 +1904,7 @@ footer{
       <div class="tool-name">Gaussian Splat Importer</div>
       <div class="tool-desc">Enables seamless importing of Gaussian splats into Unreal Engine as .ply files, offering runtime parameters for color correction, cropping, and predefined animations.</div>
     </div>
+    <div class="tool-card tool-empty"></div>
   </div>
 </section>
 
