@@ -1180,6 +1180,30 @@ footer{
   border-color: var(--line-strong);
 }
 
+/* ============ RECENT WORK ============ */
+.recent-play{ cursor:pointer; }
+.recent-play-badge{
+  position:absolute; inset:0; z-index:3;
+  display:flex; align-items:center; justify-content:center;
+  background:rgba(15,14,12,0.12);
+  transition:background 0.3s ease;
+}
+.recent-play-badge span{
+  width:76px; height:76px; border-radius:50%;
+  background:rgba(250,250,247,0.94);
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:0 10px 30px rgba(0,0,0,0.25);
+  transition:transform 0.3s ease, background 0.3s ease;
+}
+.recent-play-badge svg{ width:22px; height:22px; margin-left:4px; fill:var(--ink); transition:fill 0.3s ease; }
+.recent-play:hover .recent-play-badge{ background:rgba(15,14,12,0.32); }
+.recent-play:hover .recent-play-badge span{ transform:scale(1.08); background:var(--blue); }
+.recent-play:hover .recent-play-badge svg{ fill:#fff; }
+@media(max-width:760px){
+  .recent-play-badge span{ width:58px; height:58px; }
+  .recent-play-badge svg{ width:18px; height:18px; }
+}
+
 /* ============ NODE GRAPH DIRECTORY (SPIDER-MAN WEB & COMPACT RADIAL MAP) ============ */
 .work-section {
   background: rgba(250, 250, 247, 0.35);
@@ -1568,6 +1592,34 @@ footer{
       <div class="hero-strip-item"><b>7</b>Shipped interactive apps</div>
       <div class="hero-strip-item"><b>3</b>Custom UE5 editor plugins</div>
       <div class="hero-strip-item"><b>PC / VR / Web</b>Platform coverage</div>
+    </div>
+  </div>
+</section>
+
+<!-- RECENT WORK: AZURA FLAT SALES TOUR -->
+<section class="featured warm-theme section-pad" id="recent-work">
+  <div class="eyebrow">Recent Work / Real Estate Web App</div>
+  <div class="featured-grid">
+    <div>
+      <h2 class="featured-head">Azura Flat Sales Tour</h2>
+      <p class="featured-desc">An interactive, browser-based sales tour built for <span class="text-blue">Azura Residences</span> by Meridian Developers — letting buyers explore the tower in its seafront setting and check flat availability live, with no installation or plugin required.</p>
+      <ul class="featured-list">
+        <li>Live Inventory Tower: Every floor is colour-coded by status — Available, Reserved, or Booked — with running unit totals on screen.</li>
+        <li>Interactive Hotspots: Clickable points across the aerial view open amenity details and a podium-level 360° panorama.</li>
+        <li>Admin Control Panel: The sales team updates unit status and project content in real time from a dedicated dashboard.</li>
+      </ul>
+      <button class="play-video-btn mono" onclick="playProjectVideo('azura-flat-tour')">
+        <div class="corner tl"></div><div class="corner br"></div>
+        <span>Watch Video Demo</span>
+        <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      </button>
+    </div>
+    <div class="featured-visual">
+      <div class="featured-frame recent-play" onclick="playProjectVideo('azura-flat-tour')">
+        <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+        <img src="images/RecentWork.jpg" alt="Azura Flat Sales Tour web app">
+        <div class="recent-play-badge"><span><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></span></div>
+      </div>
     </div>
   </div>
 </section>
@@ -2444,6 +2496,7 @@ document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal
 
 // ==================== VIDEO MODAL LOGIC ====================
 const videos = {
+  'azura-flat-tour': 'https://drive.google.com/file/d/1PlrtzUwxnzV0aG2QAMmtmCNeRztdCv9c/preview',
   'vr-medical': 'https://drive.google.com/file/d/14-v3u9t4DkRhGL01oJHX63_sO42DaA-J/preview',
   'bus-configurator': 'https://drive.google.com/file/d/1gx5jGpwLdZqE2zZMth1ddY65X223bjMN/preview',
   'agri-vr': 'https://drive.google.com/file/d/1wZao6UV5fXN6krDc1WElVsKAnl54UMtn/preview',
