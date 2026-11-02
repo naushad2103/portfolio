@@ -1182,6 +1182,7 @@ footer{
 
 /* ============ RECENT WORK ============ */
 .recent-play{ cursor:pointer; }
+.recent-play img{ object-position:left center; } /* keep the tower on the left in frame */
 .recent-play-badge{
   position:absolute; inset:0; z-index:3;
   display:flex; align-items:center; justify-content:center;
@@ -1199,7 +1200,20 @@ footer{
 .recent-play:hover .recent-play-badge{ background:rgba(15,14,12,0.32); }
 .recent-play:hover .recent-play-badge span{ transform:scale(1.08); background:var(--blue); }
 .recent-play:hover .recent-play-badge svg{ fill:#fff; }
+.recent-actions{
+  display:grid; grid-template-columns:1fr 1fr; gap:12px;
+  margin-top:30px;
+}
+.recent-actions .play-video-btn{ margin-top:0; }
+.live-link-btn{
+  background:transparent;
+  color:var(--ink);
+  border-color:var(--ink);
+}
+.live-link-btn svg{ fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+.live-link-btn:hover{ border-color:var(--blue); }
 @media(max-width:760px){
+  .recent-actions{ grid-template-columns:1fr; }
   .recent-play-badge span{ width:58px; height:58px; }
   .recent-play-badge svg{ width:18px; height:18px; }
 }
@@ -1608,11 +1622,18 @@ footer{
         <li>Interactive Hotspots: Clickable points across the aerial view open amenity details and a podium-level 360° panorama.</li>
         <li>Admin Control Panel: The sales team updates unit status and project content in real time from a dedicated dashboard.</li>
       </ul>
-      <button class="play-video-btn mono" onclick="playProjectVideo('azura-flat-tour')">
-        <div class="corner tl"></div><div class="corner br"></div>
-        <span>Watch Video Demo</span>
-        <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-      </button>
+      <div class="recent-actions">
+        <button class="play-video-btn mono" onclick="playProjectVideo('azura-flat-tour')">
+          <div class="corner tl"></div><div class="corner br"></div>
+          <span>Watch Video Demo</span>
+          <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        </button>
+        <a class="play-video-btn mono live-link-btn" href="https://webappdemos.com/azura/" target="_blank" rel="noopener">
+          <div class="corner tl"></div><div class="corner br"></div>
+          <span>View Live App</span>
+          <svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        </a>
+      </div>
     </div>
     <div class="featured-visual">
       <div class="featured-frame recent-play" onclick="playProjectVideo('azura-flat-tour')">
